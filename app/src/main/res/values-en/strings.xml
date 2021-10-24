@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TennisTracker</string>
+    <string name="nouveau_match">New Match</string>
+    <string name="historique">History</string>
+    <string name="langues">Languages</string>
+    <string name="chooseLangTitle">Choose a language</string>
+    <string name="frLang">French</string>
+    <string name="enLang">English</string>
+    <string name="player_1_txtView">Club 1</string>
+    <string name="player_2_txtView">Club 2</string>
+    <string name="player_1_editTxt">Player 1</string>
+    <string name="player_2_editTxt">Player 2</string>
+    <string name="btn_demarrerTxt">Start</string>
+    <string name="mode_suivi_txtView">Location of the Match</string>
+    <string name="format_du_match_txtView">Match Format</string>
+    <string name="format_du_dernier_set_txtView">Last Set Format</string>
+    <string name="dialog_serve_player">Which club should start?</string>
+    <string name="dialog_cancel_match">Are you sure to cancel ?</string>
+    <string name="yes_txt_btn">Yes</string>
+    <string name="no_txt_btn">No</string>
+    <string name="apercu">Preview</string>
+    <string name="telecharger">Upload</string>
+    <string name="txtUploadInProgress">Upload in progress…</string>
+    <string name="txtUploadSuccesful">Upload successful</string>
+    <string name="txtUploadFailed">Upload failed</string>
+    <string name="txtDownloadImg">Do you want to download this image?</string>
+    <string name="txtImageSaved">Image Saved</string>
+
+
+
+
+</resources>

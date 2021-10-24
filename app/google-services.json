@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "617966340902",
+    "firebase_url": "https://tennistracker-33cb6-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tennistracker-33cb6",
+    "storage_bucket": "tennistracker-33cb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617966340902:android:e99e57a3e4a4683f004fe7",
+        "android_client_info": {
+          "package_name": "fr.android.tennistracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617966340902-r1nedjir4pu50kronupa710bj5mdaar3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkl9_tZ5PL3-dpKlUDz5tCTOVgFshYRr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617966340902-r1nedjir4pu50kronupa710bj5mdaar3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617966340902:android:03d2e3f4c57798c2004fe7",
+        "android_client_info": {
+          "package_name": "fr.android.tennistrackerv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617966340902-r1nedjir4pu50kronupa710bj5mdaar3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkl9_tZ5PL3-dpKlUDz5tCTOVgFshYRr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617966340902-r1nedjir4pu50kronupa710bj5mdaar3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_done_all_24.xml" value="0.403125" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_gps_fixed_24.xml" value="0.403125" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_photo_camera_48.xml" value="0.3875" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_save_alt_24.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout-land/activity_home.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_create_match.xml" value="0.34556159420289856" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_history.xml" value="0.1" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_main2.xml" value="0.21510416666666668" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_match.xml" value="0.3781965006729475" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_match2.xml" value="0.11004784688995216" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_tabbed_match_test.xml" value="0.1" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_test.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/activity_upload.xml" value="0.38269927536231885" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/content_match.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/custom_array_adapter.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/custom_spinner_club_adapter.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_location.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_main.xml" value="0.2046875" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_match.xml" value="0.1940928270042194" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_match_activity2.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_picture.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_tabbed_match.xml" value="0.2578125" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_tabbed_match_test.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/fragment_test.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/layout/image_item.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/menu/menu.xml" value="0.37135416666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

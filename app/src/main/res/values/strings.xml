@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">TennisTracker</string>
+    <string name="nouveau_match">Nouveau Match</string>
+    <string name="historique">Historique</string>
+    <string name="langues">Langues</string>
+    <string name="chooseLangTitle">Choisissez une langue</string>
+    <string name="frLang">Français</string>
+    <string name="enLang">Anglais</string>
+
+    <string name="player_1_txtView">Club 1</string>
+    <string name="player_2_txtView">Club 2</string>
+    <string name="player_1_editTxt">Club 1</string>
+    <string name="player_2_editTxt">Club 2</string>
+    <string name="dialog_serve_player">Quel club doit commencer ?</string>
+    <string name="dialog_cancel_match">Vous êtes sûr d\'annuler ?</string>
+    <string name="yes_txt_btn">Oui</string>
+    <string name="no_txt_btn">Non</string>
+    <string name="btn_demarrerTxt">Démarrer</string>
+    <string name="mode_suivi_txtView">Lieu du Match</string>
+    <string name="format_du_match_txtView">Format du Match</string>
+    <string name="format_du_dernier_set_txtView">Format du Dernier Set</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="apercu">Aperçu</string>
+    <string name="telecharger">Télécharger</string>
+    <string name="txtUploadInProgress">Téléchargement en cours…</string>
+    <string name="txtUploadSuccesful">Téléchargé</string>
+    <string name="txtUploadFailed">Téléchargement echoué</string>
+    <string name="txtDownloadImg">Voulez-vous télécharger cette image ?</string>
+    <string name="txtImageSaved">Image sauvegardée</string>
+    <string name="title_activity_tabbed_match_test">TabbedMatchTestActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+
+</resources>
