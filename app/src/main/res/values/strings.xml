@@ -12,6 +12,8 @@
     <string name="player_1_editTxt">Club 1</string>
     <string name="player_2_editTxt">Club 2</string>
     <string name="dialog_serve_player">Quel club doit commencer ?</string>
+    <string name="dialog_faute">Quel est le type de faute ?</string>
+    <string name="dialog_tir">Quel est le type du tir ?</string>
     <string name="dialog_cancel_match">Vous êtes sûr d\'annuler ?</string>
     <string name="yes_txt_btn">Oui</string>
     <string name="no_txt_btn">Non</string>

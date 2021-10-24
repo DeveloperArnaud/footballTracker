@@ -129,45 +129,6 @@
                         android:textSize="17sp"
                         />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:text="@string/format_du_match_txtView"
-                        android:textColor="#333232"
-                        android:textSize="17sp"
-
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/formatMatchSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:labelFor="@id/formatMatchSpinner"
-                        android:maxLength="20"
-                        android:maxLines="1"
-                        android:paddingTop="5dp"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20.3dp"
-                        android:text="@string/format_du_dernier_set_txtView"
-                        android:textColor="#333232"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/formatLastMatch"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:labelFor="@id/formatLastMatch"
-                        android:maxLength="10"
-                        android:maxLines="1"
-                        android:paddingTop="5dp"
-                        android:textSize="15sp" />
-
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
