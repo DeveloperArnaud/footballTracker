@@ -16,7 +16,9 @@
     <string name="format_du_match_txtView">Match Format</string>
     <string name="format_du_dernier_set_txtView">Last Set Format</string>
     <string name="dialog_serve_player">Which club should start?</string>
+    <string name="dialog_faute">What is the type of fault ?</string>
     <string name="dialog_cancel_match">Are you sure to cancel ?</string>
+    <string name="dialog_tir">What is the type of shot ?</string>
     <string name="yes_txt_btn">Yes</string>
     <string name="no_txt_btn">No</string>
     <string name="apercu">Preview</string>

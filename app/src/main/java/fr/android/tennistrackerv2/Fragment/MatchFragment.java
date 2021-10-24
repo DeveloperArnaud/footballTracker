@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import fr.android.tennistrackerv2.Callback.ISendDataFragment;
 import fr.android.tennistrackerv2.Model.Club;
 import fr.android.tennistrackerv2.R;
 
@@ -35,24 +34,51 @@ public class MatchFragment extends Fragment{
     private TextView txtNameClub2;
     private TextView txtScoreClub1;
     private TextView fautesATxt;
-    private TextView txtScoreClub2;
     private TextView cartonJATxt;
     private TextView cartonRATxt;
     private TextView tirsTxt;
     private TextView tirCadreTxt;
+    private TextView passeTxtA;
+    private TextView horsJeuTxtA;
+
+    private TextView txtScoreClub2;
+    private TextView fautesTxtB;
+    private TextView cartonJTxtB;
+    private TextView cartonRTxtB;
+    private TextView tirsTxtB;
+    private TextView tirCadreTxtB;
+    private TextView passeTxtB;
+    private TextView horsJeuTxtB;
+
     private ImageView imgView_logo_club1;
     private ImageView imgView_logo_club2;
-    Button button;
-    Button button2;
+    Button btnGoalA;
+    Button btnGoalB;
     Button btnFauteA;
     Button btnTirA;
+    Button btnHorsJeuA;
+    Button btnHorsJeuB;
+    Button btnFauteB;
+    Button btnTirB;
+    Button btnPasseA;
+    Button btnPasseB;
     int scoreTeamA = 0;
     int scoreTeamB = 0;
     int fauteA = 0;
+    int fauteB = 0;
     int cartonJauneA = 0;
+    int cartonJauneB = 0;
     int cartonRougeA = 0;
+    int cartonRougeB = 0;
     int tir = 0;
+    int tirB = 0;
     int tirCadre = 0;
+    int tirCadreB = 0;
+    int passeA = 0;
+    int passeB = 0;
+    int horsJeuA = 0;
+    int horsJeuB = 0;
+
 
 
     // TODO: Rename and change types of parameters
@@ -103,43 +129,99 @@ public class MatchFragment extends Fragment{
         imgView_logo_club2 = view.findViewById(R.id.imgView_logo_club2);
         txtNameClub1.setText(clubNameTooLong(club1.getName()));
         txtNameClub2.setText(clubNameTooLong(club2.getName()));
-        button = view.findViewById(R.id.btnGoalA);
-        button2 = view.findViewById(R.id.btnGoalB);
+        btnGoalA = view.findViewById(R.id.btnGoalA);
+        btnGoalB = view.findViewById(R.id.btnGoalB);
         btnFauteA = view.findViewById(R.id.btnFauteA);
+        btnFauteB = view.findViewById(R.id.btnFauteB);
         btnTirA = view.findViewById(R.id.btnTirA);
+        btnTirB = view.findViewById(R.id.btnTirB);
+        btnPasseA = view.findViewById(R.id.btnPasseA);
+        btnPasseB = view.findViewById(R.id.btnPasseB);
+        btnHorsJeuA = view.findViewById(R.id.btnHorsJeuA);
+        btnHorsJeuB = view.findViewById(R.id.btnHorsJeuB);
         txtScoreClub1 = view.findViewById(R.id.txtScoreClub1);
         txtScoreClub2 = view.findViewById(R.id.txtScoreClub2);
         fautesATxt = view.findViewById(R.id.fautesATxt);
+        fautesTxtB = view.findViewById(R.id.fautesTxtB);
         cartonJATxt = view.findViewById(R.id.cartonJATxt);
+        cartonJTxtB = view.findViewById(R.id.cartonJTxtB);
         cartonRATxt = view.findViewById(R.id.cartonRATxt);
+        cartonRTxtB = view.findViewById(R.id.cartonRTxtB);
+        passeTxtA = view.findViewById(R.id.passeTxtA);
+        passeTxtB = view.findViewById(R.id.passeTxtB);
         tirsTxt = view.findViewById(R.id.tirsTxt);
+        tirsTxtB = view.findViewById(R.id.tirsTxtB);
         tirCadreTxt = view.findViewById(R.id.tirsCadresTxt);
+        tirCadreTxtB = view.findViewById(R.id.tirsCadresTxtB);
+        horsJeuTxtA = view.findViewById(R.id.horsJeuTxtA);
+        horsJeuTxtB = view.findViewById(R.id.horsJeuTxtB);
         fautesATxt.setText("");
         cartonJATxt.setText("");
         cartonRATxt.setText("");
         tirsTxt.setText("");
         tirCadreTxt.setText("");
+        fautesTxtB.setText("");
+        cartonJTxtB.setText("");
+        cartonRTxtB.setText("");
+        tirsTxtB.setText("");
+        tirCadreTxtB.setText("");
+        passeTxtA.setText("");
+        passeTxtB.setText("");
+        horsJeuTxtA.setText("");
+        horsJeuTxtB.setText("");
 
 
-        button.setOnClickListener(view1 -> {
+        btnGoalA.setOnClickListener(view1 -> {
             scoreTeamA++;
             txtScoreClub1.setText(""+scoreTeamA);
         });
 
-        button2.setOnClickListener(view1 -> {
+        btnGoalB.setOnClickListener(view1 -> {
             scoreTeamB++;
             txtScoreClub2.setText(""+scoreTeamB);
         });
 
+        btnPasseA.setOnClickListener(view1 -> {
+            passeA++;
+            passeTxtA.setText("Passe(s) : "+passeA);
+        });
+
+        btnPasseB.setOnClickListener(view1 -> {
+            passeB++;
+            passeTxtB.setText("Passe(s) : "+passeB);
+        });
+
+        btnHorsJeuA.setOnClickListener(view1 -> {
+            horsJeuA++;
+            horsJeuTxtA.setText("Hors-jeu : "+horsJeuA);
+        });
+
+        btnHorsJeuB.setOnClickListener(view1 -> {
+            horsJeuB++;
+            horsJeuTxtB.setText("Hors-jeu : "+horsJeuB);
+        });
+
         btnFauteA.setOnClickListener(view12 -> {
-            showDialogClubs(view12);
+            showDialogClubs(view12, 1);
+
+        });
+
+        btnFauteB.setOnClickListener(view12 -> {
+            showDialogClubs(view12, 2);
 
         });
 
         btnTirA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogTirs(view);
+                showDialogTirs(view,1);
+            }
+        });
+
+        btnTirB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogTirs(view,2);
             }
         });
         Picasso.with(getContext())
@@ -156,21 +238,32 @@ public class MatchFragment extends Fragment{
         return view;
     }
 
-    private void showDialogTirs(View
-                                         view) {
+    private void showDialogTirs(View view, int team) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setTitle(getResources().getString(R.string.dialog_serve_player));
+        builder.setTitle(getResources().getString(R.string.dialog_tir));
         final String [] langs = {"Tir", "Tir cadré"};
         builder.setSingleChoiceItems(langs, -1, (dialogInterface, i) -> {
             if(i == 0) {
-                tir++;
-                tirsTxt.setText("Tir(s) : "+tir);
+                if(team == 1) {
+                    tir++;
+                    tirsTxt.setText("Tir(s) : "+tir);
+                } else {
+                    tirB++;
+                    tirsTxtB.setText("Tir(s) : " + tirB);
+                }
             } else {
-                tirCadre ++;
-                tir++;
-                tirsTxt.setText("Tir(s) : "+tir);
-                tirCadreTxt.setText("Tir(s) Cadré(s) : "+tirCadre);
+                if(team == 1) {
+                    tirCadre++;
+                    tir++;
+                    tirsTxt.setText("Tir(s) : " + tir);
+                    tirCadreTxt.setText("Tir(s) Cadré(s) : " + tirCadre);
+                } else {
+                    tirCadreB++;
+                    tirB++;
+                    tirsTxtB.setText("Tir(s) : " + tirB);
+                    tirCadreTxtB.setText("Tir(s) Cadré(s) : " + tirCadreB);
+                }
             }
             dialogInterface.dismiss();
         });
@@ -181,26 +274,44 @@ public class MatchFragment extends Fragment{
         dialog.setCancelable(false);
     }
 
-    private void showDialogClubs(View
-                                 view) {
+    private void showDialogClubs(View view, int team) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setTitle(getResources().getString(R.string.dialog_serve_player));
+        builder.setTitle(getResources().getString(R.string.dialog_faute));
         final String [] langs = {"Faute","Carton jaune", "Carton rouge", "Carton jaune + Penalty", "Carton rouge + Penalty"};
         builder.setSingleChoiceItems(langs, -1, (dialogInterface, i) -> {
             if(i == 0) {
-                fauteA++;
-                fautesATxt.setText("Faute(s) : "+fauteA);
+                if(team == 1) {
+                    fauteA++;
+                    fautesATxt.setText("Faute(s) : " + fauteA);
+                } else {
+                    fauteB++;
+                    fautesTxtB.setText("Faute(s) : " + fauteB);
+                }
             } else if(i == 1) {
-                fauteA++;
-                cartonJauneA ++;
-                cartonJATxt.setText("Carton(s) jaune(s) : " + cartonJauneA);
-                fautesATxt.setText("Faute(s) : "+fauteA);
+                if(team == 1) {
+                    fauteA++;
+                    cartonJauneA++;
+                    cartonJATxt.setText("Carton(s) jaune(s) : " + cartonJauneA);
+                    fautesATxt.setText("Faute(s) : " + fauteA);
+                } else {
+                    fauteB++;
+                    cartonJauneB++;
+                    cartonJTxtB.setText("Carton(s) jaune(s) : " + cartonJauneB);
+                    fautesTxtB.setText("Faute(s) : " + fauteB);
+                }
             } else if(i == 2) {
-                fauteA++;
-                cartonRougeA ++;
-                cartonRATxt.setText("Carton(s) rouge(s) : " + cartonRougeA);
-                fautesATxt.setText("Faute(s) : "+fauteA);
+                if(team == 1) {
+                    fauteA++;
+                    cartonRougeA++;
+                    cartonRATxt.setText("Carton(s) rouge(s) : " + cartonRougeA);
+                    fautesATxt.setText("Faute(s) : " + fauteA);
+                } else {
+                    fauteB++;
+                    cartonRougeB++;
+                    cartonRTxtB.setText("Carton(s) rouge(s) : " + cartonRougeB);
+                    fautesTxtB.setText("Faute(s) : " + fauteB);
+                }
             } else {
 
             }

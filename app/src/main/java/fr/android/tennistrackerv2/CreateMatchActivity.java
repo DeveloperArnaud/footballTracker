@@ -54,8 +54,6 @@ public class CreateMatchActivity extends AppCompatActivity {
     private ArrayAdapter<Format> adapterformatMatch;
     private ArrayAdapter<FormatLastMatch> adapterformatLastMatch;
     private ArrayAdapter<Club> clubArrayAdapter;
-    Spinner formatMatchSpinner;
-    Spinner formatLastMatchSpinner;
     Spinner spinnerClub1;
     Spinner spinnerClub2;
     Club club1;
@@ -69,8 +67,6 @@ public class CreateMatchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_match);
-        formatMatchSpinner = findViewById(R.id.formatMatchSpinner);
-        formatLastMatchSpinner = findViewById(R.id.formatLastMatch);
         spinnerClub1 = findViewById(R.id.spinnerClub1);
         spinnerClub2 = findViewById(R.id.spinnerClub2);
         btnLocation = findViewById(R.id.btnLocation);
@@ -101,7 +97,6 @@ public class CreateMatchActivity extends AppCompatActivity {
             adapterformatMatch = new ArrayAdapter<>(CreateMatchActivity.this, android.R.layout.simple_spinner_item, formats);
             adapterformatMatch.notifyDataSetChanged();
             adapterformatMatch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            formatMatchSpinner.setAdapter(adapterformatMatch);
         });
 
 
@@ -110,7 +105,6 @@ public class CreateMatchActivity extends AppCompatActivity {
             adapterformatLastMatch = new ArrayAdapter<>(CreateMatchActivity.this, android.R.layout.simple_spinner_item, formatLastMatches);
             adapterformatLastMatch.notifyDataSetChanged();
             adapterformatLastMatch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            formatLastMatchSpinner.setAdapter(adapterformatLastMatch);
         });
         // Prevent to select two times same club
         spinnerClub1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
