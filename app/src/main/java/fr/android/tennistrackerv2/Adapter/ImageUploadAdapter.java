@@ -73,16 +73,16 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
-        holder.imageButton.setOnClickListener(view -> new AlertDialog.Builder(view.getContext())
+        holder.imageButton.setOnClickListener(view -> new AlertDialog.Builder(context)
                 .setMessage(txtDownloadImg)
-                .setPositiveButton(txtYes, (dialogInterface, i) -> downloadImg(holder.imageView, view))
+                .setPositiveButton(txtYes, (dialogInterface, i) -> downloadImg(holder.imageView, context))
                 .setNegativeButton(txtNo, null)
                 .show());
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.R)
-    private void downloadImg(ImageView imageView, View view) {
+    private void downloadImg(ImageView imageView, Context context) {
         if(imageView != null) {
             BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
             Bitmap bitmap = drawable.getBitmap();
@@ -96,7 +96,7 @@ public class ImageUploadAdapter extends RecyclerView.Adapter<ImageUploadAdapter.
             }
             System.out.println("outputStream " + outputStream);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            Toast.makeText(view.getContext(),txtImageSaved , Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,txtImageSaved , Toast.LENGTH_SHORT).show();
             try {
                 outputStream.flush();
                 outputStream.close();

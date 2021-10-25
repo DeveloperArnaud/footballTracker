@@ -148,7 +148,7 @@ public class CreateMatchActivity extends AppCompatActivity {
 
             }
         });
-        System.out.println(club1+"x"+club2);
+
         BtnStartMatch.setOnClickListener(view -> goToMatch());
 
     }
@@ -157,7 +157,7 @@ public class CreateMatchActivity extends AppCompatActivity {
 
     public void goToMatch() {
 
-        Intent newMatchForm = new Intent(this, MatchActivity2.class);
+        Intent newMatchForm = new Intent(this, MatchBottomBarActivity.class);
         newMatchForm.putExtra("club1", club1);
         newMatchForm.putExtra("club2", club2);
         startActivity(newMatchForm);

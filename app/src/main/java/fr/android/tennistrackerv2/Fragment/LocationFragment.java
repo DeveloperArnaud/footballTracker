@@ -61,6 +61,16 @@ public class LocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mParam1 = "Test";
+        this.setmParam1(mParam1);
         return inflater.inflate(R.layout.fragment_location, container, false);
+    }
+
+    public String getmParam1() {
+        return mParam1;
+    }
+
+    public void setmParam1(String mParam1) {
+        this.mParam1 = mParam1;
     }
 }

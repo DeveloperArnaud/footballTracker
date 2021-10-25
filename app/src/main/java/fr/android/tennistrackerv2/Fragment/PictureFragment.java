@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -36,6 +37,7 @@ public class PictureFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     ImageButton btnDownload;
     ISendDataFragment iSendDataFragment;
+    MenuItem item;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,17 +95,18 @@ public class PictureFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_img);
 
         uploadViewModel = new ViewModelProvider(this).get(UploadViewModel.class);
-        uploadViewModel.getUploadList().observe(getViewLifecycleOwner(), uploads -> {
+        uploadViewModel.getUploadList().observe(getViewLifecycleOwner(), uploadsFirebase -> {
+            //uploads = uploadsFirebase;
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            imageUploadAdapter = new ImageUploadAdapter(getContext(), uploads);
+            imageUploadAdapter = new ImageUploadAdapter(getContext(), uploadsFirebase);
             recyclerView.setAdapter(imageUploadAdapter);
             imageUploadAdapter.notifyDataSetChanged();
-            this.setUploads(uploads);
+
         });
 
 
-        System.out.println(this.getUploads());
+        System.out.println(uploads);
 
         return view;
     }
