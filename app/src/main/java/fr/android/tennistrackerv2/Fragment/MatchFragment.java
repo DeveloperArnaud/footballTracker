@@ -16,7 +16,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import fr.android.tennistrackerv2.Model.Club;
+import fr.android.tennistrackerv2.Model.Match;
+import fr.android.tennistrackerv2.Model.Statistique;
 import fr.android.tennistrackerv2.R;
 
 /**
@@ -84,21 +90,17 @@ public class MatchFragment extends Fragment{
     // TODO: Rename and change types of parameters
     private Club club1;
     private Club club2;
+    public Statistique stats1;
+    public Statistique stats2;
+    public Match match;
+
 
     public MatchFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MatchFragment.
-     */
     // TODO: Rename and change types and number of parameters
-    public static MatchFragment newInstance(Club club1, Club club2) {
+    public static MatchFragment newInstance(Club club1, Club club2, Statistique statistique) {
         MatchFragment fragment = new MatchFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable("club1", club1);
@@ -111,7 +113,6 @@ public class MatchFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
         }
     }
 
@@ -122,7 +123,7 @@ public class MatchFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_match, container, false);
         club1 = (Club) getArguments().getSerializable("club1");
         club2 = (Club) getArguments().getSerializable("club2");
-        System.out.println(club2);
+
         txtNameClub1 = view.findViewById(R.id.txtNameClub1);
         txtNameClub2 = view.findViewById(R.id.txtNameClub2);
         imgView_logo_club1 = view.findViewById(R.id.imgView_logo_club1);
@@ -174,6 +175,7 @@ public class MatchFragment extends Fragment{
         btnGoalA.setOnClickListener(view1 -> {
             scoreTeamA++;
             txtScoreClub1.setText(""+scoreTeamA);
+            stats1.setTir(2);
         });
 
         btnGoalB.setOnClickListener(view1 -> {
@@ -211,19 +213,11 @@ public class MatchFragment extends Fragment{
 
         });
 
-        btnTirA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialogTirs(view,1);
-            }
-        });
+        btnTirA.setOnClickListener(view14 -> showDialogTirs(view14,1)
 
-        btnTirB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialogTirs(view,2);
-            }
-        });
+        );
+
+        btnTirB.setOnClickListener(view13 -> showDialogTirs(view13,2));
         Picasso.with(getContext())
                 .load(club1.getImgUrl())
                 .fit()
@@ -235,7 +229,32 @@ public class MatchFragment extends Fragment{
                 .centerCrop()
                 .into(imgView_logo_club2);
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String strDate = dateFormat.format(date).toString();
+        match = new Match(club1, club2, strDate, "Stade de France");
         return view;
+    }
+
+    public Club getClub1() {
+        return club1;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setStats1(Statistique stats) {
+        this.stats1 = stats;
+    }
+
+
+    public void setTirA(int tir) {
+        this.tir = tir;
+    }
+
+    public int getTirA() {
+        return this.tir;
     }
 
     private void showDialogTirs(View view, int team) {
@@ -248,6 +267,7 @@ public class MatchFragment extends Fragment{
                 if(team == 1) {
                     tir++;
                     tirsTxt.setText("Tir(s) : "+tir);
+                    this.setTirA(tir);
                 } else {
                     tirB++;
                     tirsTxtB.setText("Tir(s) : " + tirB);
@@ -265,6 +285,7 @@ public class MatchFragment extends Fragment{
                     tirCadreTxtB.setText("Tir(s) Cadré(s) : " + tirCadreB);
                 }
             }
+
             dialogInterface.dismiss();
         });
 

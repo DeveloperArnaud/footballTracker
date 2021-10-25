@@ -36,9 +36,12 @@ import java.util.List;
 
 import fr.android.tennistrackerv2.Callback.ISendDataFragment;
 import fr.android.tennistrackerv2.Fragment.Adapter.FragmentAdapter;
+import fr.android.tennistrackerv2.Fragment.LocationFragment;
 import fr.android.tennistrackerv2.Fragment.MatchFragment;
+import fr.android.tennistrackerv2.Fragment.PictureFragment;
 import fr.android.tennistrackerv2.Model.Club;
 import fr.android.tennistrackerv2.Model.Match;
+import fr.android.tennistrackerv2.Model.Statistique;
 import fr.android.tennistrackerv2.Model.Upload;
 
 public class MatchActivity2 extends AppCompatActivity implements ISendDataFragment {
@@ -55,6 +58,7 @@ public class MatchActivity2 extends AppCompatActivity implements ISendDataFragme
     String play2String;
     ISendDataFragment sendDataFragment;
     DatabaseReference matchRef;
+    Statistique statistique;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,7 @@ public class MatchActivity2 extends AppCompatActivity implements ISendDataFragme
         Intent i = getIntent();
         club1 = (Club) i.getSerializableExtra("club1");
         club2 = (Club) i.getSerializableExtra("club2");
+        statistique = new Statistique();
         showDialogClubs(club1, club2);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.viewPager2);
@@ -74,7 +79,7 @@ public class MatchActivity2 extends AppCompatActivity implements ISendDataFragme
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentAdapter = new FragmentAdapter(fragmentManager, getLifecycle(), club1, club2);
+        fragmentAdapter = new FragmentAdapter(fragmentManager, getLifecycle(), club1, club2, statistique);
         viewPager2.setAdapter(fragmentAdapter);
         tabLayout.addTab(tabLayout.newTab().setText("Match"));
         tabLayout.addTab(tabLayout.newTab().setText("Location"));
@@ -130,12 +135,10 @@ public class MatchActivity2 extends AppCompatActivity implements ISendDataFragme
             return true;
         } else if(item.getItemId() == R.id.action_done) {
             matchRef = FirebaseDatabase.getInstance().getReference().child("Match");
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            String strDate = dateFormat.format(date).toString();
-            System.out.println(fragmentAdapter.getUploads());
-            Match match = new Match(club1, club2, strDate, "8 Impasse Eugene Ducretet", fragmentAdapter.getUploads());
-            matchRef.push().setValue(match);
+            MatchFragment matchFragment = (MatchFragment) fragmentAdapter.createFragment(0);
+            System.out.println(matchFragment.getClub1());
+            //Match match = new Match(club1, club2, strDate, "8 Impasse Eugene Ducretet");
+            //matchRef.push().setValue(match);
             Toast.makeText(this, "Data inserted", Toast.LENGTH_SHORT).show();
             showDialogDoneMatch();
         }

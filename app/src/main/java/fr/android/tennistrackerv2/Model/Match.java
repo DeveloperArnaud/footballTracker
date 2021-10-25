@@ -14,12 +14,11 @@ public class Match {
     public Match() {
     }
 
-    public Match(Club club1, Club club2, String dateMatch, String addressMatch, List<Upload> uploadList) {
+    public Match(Club club1, Club club2, String dateMatch, String addressMatch) {
         this.club1 = club1;
         this.club2 = club2;
         this.dateMatch = dateMatch;
         this.addressMatch = addressMatch;
-        this.uploadList = uploadList;
     }
 
     public Club getClub1() {
@@ -40,5 +39,16 @@ public class Match {
 
     public List<Upload> getUploadList() {
         return uploadList;
+    }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "club1=" + club1 +
+                ", club2=" + club2 +
+                ", dateMatch='" + dateMatch + '\'' +
+                ", addressMatch='" + addressMatch + '\'' +
+                ", uploadList=" + uploadList +
+                '}';
     }
 }
