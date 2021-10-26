@@ -38,6 +38,7 @@ import java.util.Date;
 
 import fr.android.tennistrackerv2.Fragment.MatchFragment;
 import fr.android.tennistrackerv2.Model.Club;
+import fr.android.tennistrackerv2.Model.ClubStats;
 import fr.android.tennistrackerv2.Model.Match;
 import fr.android.tennistrackerv2.Model.Statistique;
 
@@ -311,16 +312,13 @@ public class MatchBottomBarActivity extends AppCompatActivity {
         }
 
         else if(item.getItemId() == R.id.action_done) {
-
+            stats1 = new Statistique( tir, tirCadre, scoreTeamA, fauteA, cartonJauneA, cartonRougeA, passeA, horsJeuA, 0);
+            stats2 = new Statistique(tirB, tirCadreB, scoreTeamB, fauteB, cartonJauneB, cartonRougeB, passeB, horsJeuB, 0 );
+            ClubStats clubStats1 = new ClubStats(club1.getName(), club1.getImgUrl(), club1.getImgUrl96(), stats1);
+            ClubStats clubStats2 = new ClubStats(club2.getName(), club2.getImgUrl(), club2.getImgUrl96(), stats2);
+            match = new Match(serialId, clubStats1, clubStats2,strDate,"8 Impasse Eugene Ducretet");
             DatabaseReference matchRef = FirebaseDatabase.getInstance().getReference("Match");
-            match = new Match(club1, club2,strDate,"8 Impasse Eugene Ducretet");
             matchRef.push().setValue(match);
-
-            DatabaseReference statsRef = FirebaseDatabase.getInstance().getReference("Stats");
-            stats1 = new Statistique(serialId, match, club1, tir, tirCadre, scoreTeamA, fauteA, cartonJauneA, cartonRougeA, passeA, horsJeuA, 0);
-            stats2 = new Statistique(serialId,match, club2, tirB, tirCadreB, scoreTeamB, fauteB, cartonJauneB, cartonRougeB, passeB, horsJeuB, 0 );
-            statsRef.push().setValue(stats1);
-            statsRef.push().setValue(stats2);
             showDialogDoneMatch();
         }
 

@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dateMatch"
-            android:text="2à-10-2021"/>
+            android:text="20-10-2021"/>
 
 
     </LinearLayout>

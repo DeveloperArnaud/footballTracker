@@ -10,16 +10,15 @@ import android.os.Bundle;
 import android.provider.Settings;
 
 import fr.android.tennistrackerv2.Adapter.ImageUploadAdapter;
-import fr.android.tennistrackerv2.Adapter.StatistiqueAdapter;
-import fr.android.tennistrackerv2.ViewModel.StatistiqueViewModel;
-import fr.android.tennistrackerv2.ViewModel.UploadViewModel;
+import fr.android.tennistrackerv2.Adapter.MatchAdapter;
+import fr.android.tennistrackerv2.ViewModel.MatchViewModel;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    private StatistiqueViewModel statistiqueViewModel;
+    private MatchViewModel matchViewModel;
     private String serialId;
     private RecyclerView recyclerView;
-    private StatistiqueAdapter statistiqueAdapter;
+    private MatchAdapter matchAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +31,13 @@ public class HistoryActivity extends AppCompatActivity {
         }
         System.out.println(serialId);
         recyclerView = findViewById(R.id.recycler_view_history);
-        statistiqueViewModel = new ViewModelProvider(this).get(StatistiqueViewModel.class);
-        statistiqueViewModel.getStatistiques(serialId).observe(this, statistiques -> {
+        matchViewModel = new ViewModelProvider(this).get(MatchViewModel.class);
+        matchViewModel.getMatches(serialId).observe(this, matches -> {
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            statistiqueAdapter = new StatistiqueAdapter(this, statistiques);
-            recyclerView.setAdapter(statistiqueAdapter);
-            statistiqueAdapter.notifyDataSetChanged();
+            matchAdapter = new MatchAdapter(this, matches);
+            recyclerView.setAdapter(matchAdapter);
+            matchAdapter.notifyDataSetChanged();
         });
     }
 

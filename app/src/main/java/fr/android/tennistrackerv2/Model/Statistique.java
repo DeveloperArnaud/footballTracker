@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 public class Statistique implements Serializable {
 
-    private Match match;
-    private Club club;
+
     private int tir;
     private int tirCadre;
     private int score;
@@ -20,10 +19,7 @@ public class Statistique implements Serializable {
     public Statistique() {
     }
 
-    public Statistique(String serialId,Match match, Club club, int tir, int tirCadre, int score, int fautes, int cartonJaune, int cartonRouge, int passe, int horsJeu, int corner) {
-        this.serialId = serialId;
-        this.match = match;
-        this.club = club;
+    public Statistique(int tir, int tirCadre, int score, int fautes, int cartonJaune, int cartonRouge, int passe, int horsJeu, int corner) {
         this.tir = tir;
         this.tirCadre = tirCadre;
         this.score = score;
@@ -35,22 +31,6 @@ public class Statistique implements Serializable {
         this.corner = corner;
     }
 
-
-    public Match getMatch() {
-        return match;
-    }
-
-    public void setMatch(Match match) {
-        this.match = match;
-    }
-
-    public Club getClub() {
-        return club;
-    }
-
-    public void setClub(Club club) {
-        this.club = club;
-    }
 
     public int getTir() {
         return tir;
@@ -127,8 +107,6 @@ public class Statistique implements Serializable {
     @Override
     public String toString() {
         return "Statistique{" +
-                "match=" + match +
-                ", club=" + club +
                 ", tir=" + tir +
                 ", tirCadre=" + tirCadre +
                 ", score=" + score +

@@ -232,7 +232,7 @@ public class MatchFragment extends Fragment{
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String strDate = dateFormat.format(date).toString();
-        match = new Match(club1, club2, strDate, "Stade de France");
+        //match = new Match(club1, club2, strDate, "Stade de France");
         return view;
     }
 
