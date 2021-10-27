@@ -47,9 +47,12 @@
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/activity_home.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/activity_match.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/activity_match2.xml" value="0.2" />
+        <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/activity_match_bottom_bar.xml" value="0.2" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/activity_splash_screen.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/activity_stats_match_bottom_bar.xml" value="0.2" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/custom_spinner_club_adapter.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/fragment_match.xml" value="0.264" />
+        <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
