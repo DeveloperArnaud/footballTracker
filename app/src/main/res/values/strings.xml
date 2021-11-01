@@ -33,6 +33,7 @@
     <string name="title_activity_tabbed_match_test">TabbedMatchTestActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="google_map_key">AIzaSyDG7SDsyGQz3u7smTF1vFqG-skAmu3m2Rg</string>
 
 
 </resources>

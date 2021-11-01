@@ -65,7 +65,7 @@ public class PictureActivity extends AppCompatActivity {
             return false;
         });
 
-        recyclerView = findViewById(R.id.recycler_view_img);
+        //recyclerView = findViewById(R.id.recycler_view_img);
 
         uploadViewModel = new ViewModelProvider(this).get(UploadViewModel.class);
         uploadViewModel.getUploadList().observe(this, uploadsFirebase -> {

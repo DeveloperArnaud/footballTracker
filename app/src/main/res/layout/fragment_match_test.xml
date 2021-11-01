@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MatchBottomBarActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,71 +23,70 @@
 
                 <ImageView
                     android:id="@+id/imgView_logo_club1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
+                    android:layout_width="85dp"
+                    android:layout_height="85dp" />
 
                 <TextView
                     android:id="@+id/txtNameClub1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Team A"
-                    android:textSize="28sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtScoreClub1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="28dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/passeTxtA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Passes : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tirsTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tirs : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tirsCadresTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tirs cadrés : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/fautesATxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fautes : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/cartonJATxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cartons jaunes : 6"
-                    android:textSize="15dp" />
-
+                    android:textSize="12sp" />
                 <TextView
                     android:id="@+id/cartonRATxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cartons rouges : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/horsJeuTxtA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hors-jeu : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnTirA"
@@ -108,34 +95,34 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="Tir"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnPasseA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
                     android:text="Passe"
-                    android:textSize="15sp" />
+                    android:background="@drawable/rounded_corners"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnGoalA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
                     android:text="But"
-                    android:textSize="15sp" />
+                    android:background="@drawable/rounded_corners"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnFauteA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_corners"
                     android:text="Faute"
-                    android:textSize="15sp" />
+                    android:background="@drawable/rounded_corners"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btnHorsJeuA"
@@ -144,7 +131,9 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="Hors-jeu"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
+
+
 
 
             </LinearLayout>
@@ -160,64 +149,64 @@
 
                 <ImageView
                     android:id="@+id/imgView_logo_club2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
+                    android:layout_width="85dp"
+                    android:layout_height="85dp" />
 
                 <TextView
                     android:id="@+id/txtNameClub2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Team B"
-                    android:textSize="28sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtScoreClub2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="28dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/passeTxtB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Passes : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tirsTxtB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tirs : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/tirsCadresTxtB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tirs cadrés : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/fautesTxtB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fautes : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/cartonJTxtB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cartons jaunes : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/cartonRTxtB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cartons rouges : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
 
                 <TextView
@@ -225,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hors-jeu : 6"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/btnTirB"
@@ -234,7 +223,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="Tir"
-                    android:textSize="15sp" />
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/btnPasseB"
@@ -243,7 +232,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="Passe"
-                    android:textSize="15sp" />
+                    android:textSize="13dp" />
 
                 <Button
                     android:id="@+id/btnGoalB"
@@ -252,7 +241,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="But"
-                    android:textSize="15sp" />
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/btnFauteB"
@@ -261,7 +250,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="Faute"
-                    android:textSize="15sp" />
+                    android:textSize="13dp" />
 
                 <Button
                     android:id="@+id/btnHorsJeuB"
@@ -270,25 +259,30 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
                     android:text="Hors-jeu"
-                    android:textSize="15sp" />
-
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_bar"
-        android:layout_width="match_parent"
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemBackground="@color/white"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_navigation" />
+        android:id="@+id/fab_btn"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:fabSize="normal"
+        app:elevation="6dp"
+        android:background="@color/black"
+        android:src="@drawable/ic_baseline_done_all_24"/>
 
 
-</RelativeLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

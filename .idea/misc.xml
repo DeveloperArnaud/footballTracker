@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_done_all_24.xml" value="0.403125" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_gps_fixed_24.xml" value="0.403125" />
         <entry key="..\:/Users/arnau/AndroidStudioProjects/tennisTrackerV2/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.25416666666666665" />
@@ -53,6 +54,21 @@
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/custom_spinner_club_adapter.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/layout/fragment_match.xml" value="0.264" />
         <entry key="..\:/Users/ssh60/Documents/GitHub/footballTracker/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/drawable/ic_baseline_done_all_24.xml" value="0.4046875" />
+        <entry key="app/src/main/res/layout/activity_create_match.xml" value="0.20677083333333332" />
+        <entry key="app/src/main/res/layout/activity_match2.xml" value="0.1634963768115942" />
+        <entry key="app/src/main/res/layout/activity_match_bottom_bar.xml" value="0.3383152173913043" />
+        <entry key="app/src/main/res/layout/activity_nearby_stadium.xml" value="0.10201900865075049" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.3383152173913043" />
+        <entry key="app/src/main/res/layout/fragment_location_test.xml" value="0.1634963768115942" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/fragment_match.xml" value="0.1634963768115942" />
+        <entry key="app/src/main/res/layout/fragment_match_test.xml" value="0.4519706187189627" />
+        <entry key="app/src/main/res/layout/fragment_picture.xml" value="0.1634963768115942" />
+        <entry key="app/src/main/res/layout/fragment_pictures_test.xml" value="0.1634963768115942" />
+        <entry key="app/src/main/res/layout/image_item.xml" value="0.1634963768115942" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.3885416666666667" />
+        <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.3885416666666667" />
       </map>
     </option>
   </component>

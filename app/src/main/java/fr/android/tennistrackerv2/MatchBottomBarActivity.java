@@ -190,57 +190,7 @@ public class MatchBottomBarActivity extends AppCompatActivity {
             }
         });
 
-        btnGoalA.setOnClickListener(view1 -> {
-            scoreTeamA++;
-            tir++;
-            tirCadre++;
-            txtScoreClub1.setText(""+scoreTeamA);
-            tirsTxt.setText("Tir(s) : "+tir);
-            tirCadreTxt.setText("Tir(s) Cadré(s) : " + tirCadre);
-        });
 
-        btnGoalB.setOnClickListener(view1 -> {
-            scoreTeamB++;
-            tirB++;
-            tirCadreB++;
-            txtScoreClub2.setText(""+scoreTeamB);
-            tirsTxtB.setText("Tir(s) : " + tirB);
-            tirCadreTxtB.setText("Tir(s) Cadré(s) : " + tirCadreB);
-        });
-
-        btnPasseA.setOnClickListener(view1 -> {
-            passeA++;
-            passeTxtA.setText("Passe(s) : "+passeA);
-        });
-
-        btnPasseB.setOnClickListener(view1 -> {
-            passeB++;
-            passeTxtB.setText("Passe(s) : "+passeB);
-        });
-
-        btnHorsJeuA.setOnClickListener(view1 -> {
-            horsJeuA++;
-            horsJeuTxtA.setText("Hors-jeu : "+horsJeuA);
-        });
-
-        btnHorsJeuB.setOnClickListener(view1 -> {
-            horsJeuB++;
-            horsJeuTxtB.setText("Hors-jeu : "+horsJeuB);
-        });
-
-        btnFauteA.setOnClickListener(view12 -> {
-            showDialogClubs(view12, 1);
-
-        });
-
-        btnFauteB.setOnClickListener(view12 -> {
-            showDialogClubs(view12, 2);
-
-        });
-
-        btnTirA.setOnClickListener(view14 -> showDialogTirs(view14,1)
-
-        );
 
         btnTirB.setOnClickListener(view13 -> showDialogTirs(view13,2));
         Picasso.with(this)

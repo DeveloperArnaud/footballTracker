@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -61,6 +62,14 @@ public class CreateMatchActivity extends AppCompatActivity {
     EditText lieuMatchTxt;
     ImageButton btnLocation;
     Button BtnStartMatch;
+    Intent i;
+    String address;
+    String title;
+    String snippet;
+    String photo_ref;
+    double lat, lng;
+    String latP;
+    String lngtP;
 
 
     @Override
@@ -72,6 +81,24 @@ public class CreateMatchActivity extends AppCompatActivity {
         btnLocation = findViewById(R.id.btnLocation);
         lieuMatchTxt = findViewById(R.id.lieuMatchTxt);
         BtnStartMatch = findViewById(R.id.BtnStartMatch);
+
+        i = getIntent();
+
+        address = i.getStringExtra("address");
+        snippet = i.getStringExtra("snippet");
+        title = i.getStringExtra("title");
+        photo_ref = i.getStringExtra("photo_ref");
+
+
+        if(address == null) {
+            lieuMatchTxt.setText("");
+        } else {
+            lieuMatchTxt.setText(address);
+        }
+
+        lat = i.getDoubleExtra("lat", 0);
+        lng =i.getDoubleExtra("lng",0);
+
 
         formatViewModel = new ViewModelProvider(this).get(FormatViewModel.class);
         formatLastMatchViewModel = new ViewModelProvider(this).get(FormatLastMatchViewModel.class);
@@ -85,6 +112,7 @@ public class CreateMatchActivity extends AppCompatActivity {
         });
 
         clubViewModel.getClubData().observe(this, clubs -> {
+            System.out.println(clubs);
             SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this, R.layout.custom_spinner_club_adapter,clubs );
             spinnerAdapter.notifyDataSetChanged();
             //spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -150,6 +178,10 @@ public class CreateMatchActivity extends AppCompatActivity {
         });
 
         BtnStartMatch.setOnClickListener(view -> goToMatch());
+        btnLocation.setOnClickListener(view -> {
+            Intent intent = new Intent(CreateMatchActivity.this, NearbyStadiumActivity.class);
+            startActivity(intent);
+        });
 
     }
 
@@ -157,11 +189,23 @@ public class CreateMatchActivity extends AppCompatActivity {
 
     public void goToMatch() {
 
-        Intent newMatchForm = new Intent(this, MatchBottomBarActivity.class);
-        newMatchForm.putExtra("club1", club1);
-        newMatchForm.putExtra("club2", club2);
-        startActivity(newMatchForm);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        Intent newMatchForm = new Intent(this, TestActivity.class);
+
+        if(club1 != null && club2 != null && address != null && lat > 0 & lng > 0) {
+            newMatchForm.putExtra("club1", club1);
+            newMatchForm.putExtra("club2", club2);
+            newMatchForm.putExtra("lat", lat);
+            newMatchForm.putExtra("lng", lng);
+            newMatchForm.putExtra("address", address);
+            newMatchForm.putExtra("title", title);
+            newMatchForm.putExtra("snippet", snippet);
+            newMatchForm.putExtra("photo_ref", photo_ref);
+            startActivity(newMatchForm);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } else {
+            Toast.makeText(CreateMatchActivity.this, "Veuillez sélectionner tous les champs nécessaires", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -169,4 +213,5 @@ public class CreateMatchActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
+
 }

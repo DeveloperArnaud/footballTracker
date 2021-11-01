@@ -62,17 +62,15 @@
                         android:layout_width="fill_parent">
 
 
-
-                    <EditText
-                        android:id="@+id/lieuMatchTxt"
-                        android:layout_width="338dp"
-                        android:layout_height="50dp"
-                        android:hint="Roland Garros"
-                        android:labelFor="@id/lieuMatchTxt"
-                        android:maxLength="10"
-                        android:maxLines="1"
-                        android:paddingTop="5dp"
-                        android:textSize="15sp" />
+                        <EditText
+                            android:id="@+id/lieuMatchTxt"
+                            android:layout_width="305dp"
+                            android:layout_height="50dp"
+                            android:text="Complexe Sportif Pierrelaye, 132 Avenue de la mort de Jacques Chirac"
+                            android:labelFor="@id/lieuMatchTxt"
+                            android:maxLines="2"
+                            android:paddingTop="5dp"
+                            android:textSize="15sp" />
 
                         <ImageButton
                             android:id="@+id/btnLocation"
