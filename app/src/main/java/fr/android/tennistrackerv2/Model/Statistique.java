@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Statistique implements Serializable {
 
-
+    private int id_stats;
     private int tir;
     private int tirCadre;
     private int score;
@@ -19,6 +19,19 @@ public class Statistique implements Serializable {
     public Statistique() {
     }
 
+    public Statistique(int id_stats, int tir, int tirCadre, int score, int fautes, int cartonJaune, int cartonRouge, int passe, int horsJeu, int corner) {
+        this.id_stats = id_stats;
+        this.tir = tir;
+        this.tirCadre = tirCadre;
+        this.score = score;
+        this.fautes = fautes;
+        this.cartonJaune = cartonJaune;
+        this.cartonRouge = cartonRouge;
+        this.passe = passe;
+        this.horsJeu = horsJeu;
+        this.corner = 0;
+    }
+
     public Statistique(int tir, int tirCadre, int score, int fautes, int cartonJaune, int cartonRouge, int passe, int horsJeu, int corner) {
         this.tir = tir;
         this.tirCadre = tirCadre;
@@ -29,6 +42,10 @@ public class Statistique implements Serializable {
         this.passe = passe;
         this.horsJeu = horsJeu;
         this.corner = corner;
+    }
+
+    public int getId_stats() {
+        return id_stats;
     }
 
 
@@ -107,7 +124,7 @@ public class Statistique implements Serializable {
     @Override
     public String toString() {
         return "Statistique{" +
-                ", tir=" + tir +
+                "  tir=" + tir +
                 ", tirCadre=" + tirCadre +
                 ", score=" + score +
                 ", fautes=" + fautes +

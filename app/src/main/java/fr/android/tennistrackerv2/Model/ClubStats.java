@@ -1,7 +1,11 @@
 package fr.android.tennistrackerv2.Model;
 
-public class ClubStats {
+import java.io.Serializable;
 
+public class ClubStats implements Serializable {
+
+    private int id;
+    private int id_stats;
     private String name;
     private String imgUrl;
     private String imgUrl96;
@@ -15,6 +19,29 @@ public class ClubStats {
         this.imgUrl = imgUrl;
         this.imgUrl96 = imgUrl96;
         this.statistique = statistique;
+    }
+
+    public ClubStats(int id, String name, String imgUrl, int id_stats) {
+        this.id = id;
+        this.name = name;
+        this.imgUrl = imgUrl;
+        this.id_stats = id_stats;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getId_stats() {
+        return id_stats;
+    }
+
+    public void setId_stats(int id_stats) {
+        this.id_stats = id_stats;
     }
 
     public String getName() {
@@ -47,5 +74,17 @@ public class ClubStats {
 
     public void setStatistique(Statistique statistique) {
         this.statistique = statistique;
+    }
+
+    @Override
+    public String toString() {
+        return "ClubStats{" +
+                "id=" + id +
+                ", id_stats=" + id_stats +
+                ", name='" + name + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", imgUrl96='" + imgUrl96 + '\'' +
+                ", statistique=" + statistique +
+                '}';
     }
 }

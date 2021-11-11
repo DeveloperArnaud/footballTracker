@@ -35,8 +35,8 @@ public class SpinnerAdapter extends ArrayAdapter<Club> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = layoutInflater.inflate(R.layout.custom_spinner_club_adapter, null , true);
         Club club = getItem(position);
-        TextView textView = (TextView) view.findViewById(R.id.txtView_spinner_club);
-        ImageView imgView = (ImageView) view.findViewById(R.id.imgView_spinner);
+        TextView textView = view.findViewById(R.id.txtView_spinner_club);
+        ImageView imgView = view.findViewById(R.id.imgView_spinner);
         textView.setText(club.getName());
         Picasso.with(view.getContext())
                 .load(club.getImgUrl())
@@ -52,14 +52,13 @@ public class SpinnerAdapter extends ArrayAdapter<Club> {
         if(convertView == null)
             convertView = layoutInflater.inflate(R.layout.custom_spinner_club_adapter, parent, false);
         Club club = getItem(position);
-        TextView textView = (TextView) convertView.findViewById(R.id.txtView_spinner_club);
-        ImageView imgView = (ImageView) convertView.findViewById(R.id.imgView_spinner);
+        TextView textView = convertView.findViewById(R.id.txtView_spinner_club);
+        ImageView imgView = convertView.findViewById(R.id.imgView_spinner);
         textView.setText(club.getName());
         Picasso.with(convertView.getContext())
                 .load(club.getImgUrl())
                 .into(imgView);
         return convertView;
-
     }
 
 }

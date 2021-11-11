@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_soccer"
     tools:context=".HomeActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,13 +13,14 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/linearImg"
         android:gravity="center"
+        android:paddingTop="50dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/logo" />
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/uefa_champions_league" />
 
     </LinearLayout>
 
@@ -42,6 +44,15 @@
             app:cornerRadius="10dp"
             android:background="@drawable/rounded_corners"
             android:text="@string/nouveau_match" />
+
+        <Button
+            android:id="@+id/btnStatsClubs"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corners"
+            android:text="Club Statistiques"
+            app:cornerRadius="10dp" />
 
         <Button
             android:id="@+id/btnHistoric"

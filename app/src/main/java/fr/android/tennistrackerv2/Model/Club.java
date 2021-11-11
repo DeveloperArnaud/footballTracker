@@ -8,6 +8,7 @@ public class Club implements Serializable {
     private String imgUrl;
     private String imgUrl96;
     private Statistique statistique;
+    private int id;
 
 
     public Club() {
@@ -24,6 +25,14 @@ public class Club implements Serializable {
         this.imgUrl = imgUrl;
         this.imgUrl96 = imgUrl96;
         this.statistique = statistique;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Statistique getStatistique() {

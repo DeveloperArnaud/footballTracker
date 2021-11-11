@@ -1,5 +1,7 @@
 package fr.android.tennistrackerv2.Model;
 
+import java.sql.Timestamp;
+
 public class Upload {
 
     private String name;
@@ -15,6 +17,7 @@ public class Upload {
         }
         this.name = name;
         this.imgUrl = imgUrl;
+
     }
 
     public String getName() {

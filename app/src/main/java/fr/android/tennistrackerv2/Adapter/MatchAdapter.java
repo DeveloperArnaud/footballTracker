@@ -1,28 +1,28 @@
 package fr.android.tennistrackerv2.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import fr.android.tennistrackerv2.MatchBottomBarActivity;
 import fr.android.tennistrackerv2.Model.Match;
-import fr.android.tennistrackerv2.Model.Statistique;
 import fr.android.tennistrackerv2.R;
 import fr.android.tennistrackerv2.StatsMatchBottomBarActivity;
+import fr.android.tennistrackerv2.Utils.Utils;
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 
     private Context context;
     private List<Match> matches;
+    Activity  activity;
 
 
     public MatchAdapter(Context context, List<Match> matches) {
@@ -40,7 +40,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     @Override
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
         Match match = matches.get(position);
-        holder.nameClub.setText(match.getClub1().getName() +" VS " + match.getClub2().getName());
+        holder.nameClub.setText(Utils.clubNameTooLong(match.getClub1().getName()) +" VS " + Utils.clubNameTooLong(match.getClub2().getName()));
         holder.dateMatch.setText(match.getDateMatch());
 
     }
@@ -60,29 +60,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
             itemView.setOnClickListener(view -> {
                 Match match = matches.get(getAdapterPosition());
                 Intent statsMatch = new Intent(context, StatsMatchBottomBarActivity.class);
-                statsMatch.putExtra("club1Img", match.getClub1().getImgUrl());
-                statsMatch.putExtra("club1Name", match.getClub1().getName());
-                statsMatch.putExtra("club1Score", match.getClub1().getStatistique().getScore());
-                statsMatch.putExtra("club1Tir", match.getClub1().getStatistique().getTir());
-                statsMatch.putExtra("club1TirCadre", match.getClub1().getStatistique().getTirCadre());
-                statsMatch.putExtra("club1Passe", match.getClub1().getStatistique().getPasse());
-                statsMatch.putExtra("club1Faute", match.getClub1().getStatistique().getFautes());
-                statsMatch.putExtra("club1CartonJ", match.getClub1().getStatistique().getCartonJaune());
-                statsMatch.putExtra("club1CartonR", match.getClub1().getStatistique().getCartonRouge());
-                statsMatch.putExtra("club1HorsJeu", match.getClub1().getStatistique().getHorsJeu());
-
-                statsMatch.putExtra("club2Img", match.getClub2().getImgUrl());
-                statsMatch.putExtra("club2Name", match.getClub2().getName());
-                statsMatch.putExtra("club2Score", match.getClub2().getStatistique().getScore());
-                statsMatch.putExtra("club2Tir", match.getClub2().getStatistique().getTir());
-                statsMatch.putExtra("club2TirCadre", match.getClub2().getStatistique().getTirCadre());
-                statsMatch.putExtra("club2Passe", match.getClub2().getStatistique().getPasse());
-                statsMatch.putExtra("club2Faute", match.getClub2().getStatistique().getFautes());
-                statsMatch.putExtra("club2CartonJ", match.getClub2().getStatistique().getCartonJaune());
-                statsMatch.putExtra("club2CartonR", match.getClub2().getStatistique().getCartonRouge());
-                statsMatch.putExtra("club2HorsJeu", match.getClub2().getStatistique().getHorsJeu());
-
+                statsMatch.putExtra("match", match);
                 context.startActivity(statsMatch);
+                activity = (Activity) context;
+                activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
         }
     }

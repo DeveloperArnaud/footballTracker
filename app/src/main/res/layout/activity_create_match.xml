@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_soccer"
     tools:context=".CreateMatchActivity">
 
     <LinearLayout
@@ -24,7 +25,7 @@
                 android:layout_marginLeft="32dp"
                 android:gravity="center_horizontal"
                 android:text="@string/nouveau_match"
-                android:textColor="#333232"
+                android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -53,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20.3dp"
                         android:text="@string/mode_suivi_txtView"
-                        android:textColor="#333232"
+                        android:textColor="#FFFFFF"
                         android:textSize="17sp"
                         android:textStyle="bold" />
                     <LinearLayout
@@ -66,9 +67,9 @@
                             android:id="@+id/lieuMatchTxt"
                             android:layout_width="305dp"
                             android:layout_height="50dp"
-                            android:text="Complexe Sportif Pierrelaye, 132 Avenue de la mort de Jacques Chirac"
                             android:labelFor="@id/lieuMatchTxt"
                             android:maxLines="2"
+                            android:hint="@string/localisez_les_stades_pr_s_de_chez_vous"
                             android:paddingTop="5dp"
                             android:textSize="15sp" />
 
@@ -81,7 +82,7 @@
                             android:minHeight="48dp"
                             android:src="@drawable/ic_baseline_gps_fixed_24"
                             android:text="Here"
-                            android:background="#0AFFFFFF"
+                            android:background="@android:color/transparent"
                             tools:ignore="SpeakableTextPresentCheck" />
                     </LinearLayout>
 
@@ -90,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20.3dp"
                         android:text="@string/player_1_txtView"
-                        android:textColor="#333232"
+                        android:textColor="#FFFFFF"
                         android:textSize="16.7sp"
                         android:textStyle="bold" />
 
@@ -110,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20.3dp"
-                        android:textColor="#333232"
+                        android:textColor="#FFFFFF"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 

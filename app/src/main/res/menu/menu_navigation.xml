@@ -7,11 +7,11 @@
 
     <item
         android:id="@+id/localisationPage"
-        android:title="Localisation"
+        android:title="@string/localisation"
         android:icon="@drawable/ic_baseline_location_on_24"/>
 
     <item
         android:id="@+id/picturePage"
-        android:title="Pictures"
+        android:title="@string/photos"
         android:icon="@drawable/ic_baseline_image_24"/>
 </menu>

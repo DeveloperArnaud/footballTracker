@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/background_soccer"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
@@ -94,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="Tir"
+                    android:text="@string/tir"
                     android:textSize="12sp" />
 
                 <Button
@@ -102,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Passe"
+                    android:text="@string/passe"
                     android:background="@drawable/rounded_corners"
                     android:textSize="12sp" />
 
@@ -111,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
-                    android:text="But"
+                    android:text="@string/but"
                     android:background="@drawable/rounded_corners"
                     android:textSize="12sp" />
 
@@ -120,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
-                    android:text="Faute"
+                    android:text="@string/faute"
                     android:background="@drawable/rounded_corners"
                     android:textSize="12sp" />
 
@@ -130,7 +131,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="Hors-jeu"
+                    android:text="@string/hors_jeu"
                     android:textSize="12sp" />
 
 
@@ -222,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="Tir"
+                    android:text="@string/tir"
                     android:textSize="12dp" />
 
                 <Button
@@ -231,7 +232,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="Passe"
+                    android:text="@string/passe"
                     android:textSize="13dp" />
 
                 <Button
@@ -240,7 +241,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="But"
+                    android:text="@string/but"
                     android:textSize="12dp" />
 
                 <Button
@@ -249,7 +250,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="Faute"
+                    android:text="@string/faute"
                     android:textSize="13dp" />
 
                 <Button
@@ -258,7 +259,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_corners"
-                    android:text="Hors-jeu"
+                    android:text="@string/hors_jeu"
                     android:textSize="12dp" />
 
             </LinearLayout>

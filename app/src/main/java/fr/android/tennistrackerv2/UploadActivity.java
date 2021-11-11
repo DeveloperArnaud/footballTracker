@@ -33,7 +33,6 @@ import fr.android.tennistrackerv2.Model.Upload;
 public class UploadActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private static final int IMG_REQUEST = 10;
 
     private Button btnUpload;
     private ProgressBar progressBar;
@@ -44,7 +43,6 @@ public class UploadActivity extends AppCompatActivity {
     private StorageTask task;
     private String txtUploadInProgress;
     private String txtUploadSuccessful;
-    private String txtUploadFailed;
 
 
     @Override
@@ -56,13 +54,13 @@ public class UploadActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_upload);
         txtUploadInProgress = getResources().getString(R.string.txtUploadInProgress);
         txtUploadSuccessful = getResources().getString(R.string.txtUploadSuccesful);
-        txtUploadFailed = getResources().getString(R.string.txtUploadFailed);
+        String txtUploadFailed = getResources().getString(R.string.txtUploadFailed);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         imageView.setImageBitmap(bmp);
         storageReference = FirebaseStorage.getInstance().getReference("Picture");
         databaseReference = FirebaseDatabase.getInstance().getReference("Picture");
-        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bmp , "Title", null);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bmp , "IMG_" + System.currentTimeMillis(), null);
         imageUri = Uri.parse(path);
         btnUpload.setOnClickListener(view -> {
             if(task != null && task.isInProgress()) {

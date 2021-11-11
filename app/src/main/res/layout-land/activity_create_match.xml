@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_soccer"
+    tools:context=".CreateMatchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="32dp"
+                android:gravity="center_horizontal"
+                android:text="@string/nouveau_match"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+               >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20.3dp"
+                        android:text="@string/mode_suivi_txtView"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent">
+
+
+                        <EditText
+                            android:id="@+id/lieuMatchTxt"
+                            android:layout_width="636dp"
+                            android:layout_height="50dp"
+                            android:hint="@string/localisez_les_stades_pr_s_de_chez_vous"
+                            android:labelFor="@id/lieuMatchTxt"
+                            android:maxLines="2"
+                            android:paddingTop="5dp"
+                            android:textSize="15sp" />
+
+                        <ImageButton
+                            android:id="@+id/btnLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:src="@drawable/ic_baseline_gps_fixed_24"
+                            android:text="Here"
+                            android:background="@android:color/transparent"
+                            tools:ignore="SpeakableTextPresentCheck" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20.3dp"
+                        android:text="@string/player_1_txtView"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16.7sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinnerClub1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:labelFor="@id/spinnerClub1"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:text="@string/player_1_editTxt"
+                        android:paddingTop="5dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:text="@string/player_2_txtView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20.3dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinnerClub2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:labelFor="@id/spinnerClub2"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:textColor="#333232"
+                        android:paddingTop="5dp"
+                        android:text="@string/player_2_editTxt"
+                        android:textSize="17sp"
+                        />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="50dp"
+                        android:text="@string/btn_demarrerTxt"
+
+                        android:id="@+id/BtnStartMatch"
+                        android:background="@drawable/rounded_corners"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</ScrollView>

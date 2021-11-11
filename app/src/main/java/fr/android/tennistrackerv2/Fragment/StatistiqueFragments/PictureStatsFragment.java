@@ -1,16 +1,14 @@
-package fr.android.tennistrackerv2.Fragment;
+package fr.android.tennistrackerv2.Fragment.StatistiqueFragments;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,14 +24,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.ByteArrayOutputStream;
 
 import fr.android.tennistrackerv2.Adapter.ImageUploadAdapter;
-import fr.android.tennistrackerv2.MatchBottomBarActivity;
 import fr.android.tennistrackerv2.R;
 import fr.android.tennistrackerv2.UploadActivity;
 import fr.android.tennistrackerv2.ViewModel.UploadViewModel;
 
-public class PictureTestFragment extends Fragment {
+public class PictureStatsFragment extends Fragment {
 
-    FloatingActionButton fab_pictures;
     private RecyclerView recyclerView;
     private ImageUploadAdapter imageUploadAdapter;
     private UploadViewModel uploadViewModel;
@@ -41,7 +37,7 @@ public class PictureTestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_pictures_test, container, false);
+       View view = inflater.inflate(R.layout.fragment_pictures_stats, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_img);
         uploadViewModel = new ViewModelProvider(this).get(UploadViewModel.class);
@@ -53,20 +49,11 @@ public class PictureTestFragment extends Fragment {
             imageUploadAdapter.notifyDataSetChanged();
 
         });
-
-       fab_pictures = view.findViewById(R.id.fab_btn_picture);
-       fab_pictures.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-                openCameraPermission();
-           }
-       });
        return view;
     }
 
     private void openCameraPermission() {
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ;
             ActivityCompat.requestPermissions(getActivity(), new String[] {
                     Manifest.permission.CAMERA
             }, 100);
@@ -87,6 +74,7 @@ public class PictureTestFragment extends Fragment {
                 photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 intent.putExtra("image",byteArray);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             } else {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

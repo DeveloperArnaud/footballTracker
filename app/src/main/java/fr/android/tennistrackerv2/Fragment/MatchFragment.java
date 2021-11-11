@@ -1,12 +1,10 @@
 package fr.android.tennistrackerv2.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-
+import android.os.Vibrator;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,28 +12,34 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import fr.android.tennistrackerv2.Utils.Common;
+import fr.android.tennistrackerv2.Database.DatabaseManager;
+import fr.android.tennistrackerv2.Model.Address;
 import fr.android.tennistrackerv2.Model.Club;
+import fr.android.tennistrackerv2.Model.ClubStats;
 import fr.android.tennistrackerv2.Model.Match;
 import fr.android.tennistrackerv2.Model.Statistique;
 import fr.android.tennistrackerv2.R;
+import fr.android.tennistrackerv2.StatsMatchBottomBarActivity;
+import fr.android.tennistrackerv2.Utils.Utils;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MatchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MatchFragment extends Fragment{
+public class MatchFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    //Match
     private TextView txtNameClub1;
     private TextView txtNameClub2;
     private TextView txtScoreClub1;
@@ -46,6 +50,14 @@ public class MatchFragment extends Fragment{
     private TextView tirCadreTxt;
     private TextView passeTxtA;
     private TextView horsJeuTxtA;
+
+    private Statistique stats1;
+    private Statistique stats2;
+
+    private Match match;
+    private Address addressMatch;
+
+    private String serialId;
 
     private TextView txtScoreClub2;
     private TextView fautesTxtB;
@@ -86,50 +98,48 @@ public class MatchFragment extends Fragment{
     int horsJeuB = 0;
 
 
+    FloatingActionButton fab_btn;
+    Bundle bundleClub;
+    Club club1;
+    Club club2;
 
-    // TODO: Rename and change types of parameters
-    private Club club1;
-    private Club club2;
-    public Statistique stats1;
-    public Statistique stats2;
-    public Match match;
+    String address;
+    String title;
+    String snippet;
+
+    double currentLat, currentLong = 0;
+
+    DatabaseManager databaseManager;
 
 
-    public MatchFragment() {
-        // Required empty public constructor
-    }
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private Date date = new Date();
+    private final String strDate = dateFormat.format(date);
+    String tirTxt;
+    String tirCadreTx;
 
-    // TODO: Rename and change types and number of parameters
-    public static MatchFragment newInstance(Club club1, Club club2, Statistique statistique) {
-        MatchFragment fragment = new MatchFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("club1", club1);
-        bundle.putSerializable("club2", club2);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_match_test, container, false);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_match, container, false);
-        club1 = (Club) getArguments().getSerializable("club1");
-        club2 = (Club) getArguments().getSerializable("club2");
+        bundleClub = getArguments();
+        serialId = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+        club1 = (Club) bundleClub.getSerializable("club1");
+        club2 = (Club) bundleClub.getSerializable("club2");
+        address = bundleClub.getString("address");
+        title = bundleClub.getString("title");
+        snippet = bundleClub.getString("snippet");
+        currentLat = bundleClub.getDouble("lat");
+        currentLong = bundleClub.getDouble("lng");
+        Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         txtNameClub1 = view.findViewById(R.id.txtNameClub1);
         txtNameClub2 = view.findViewById(R.id.txtNameClub2);
         imgView_logo_club1 = view.findViewById(R.id.imgView_logo_club1);
         imgView_logo_club2 = view.findViewById(R.id.imgView_logo_club2);
-        txtNameClub1.setText(clubNameTooLong(club1.getName()));
-        txtNameClub2.setText(clubNameTooLong(club2.getName()));
+        txtNameClub1.setText(Utils.clubNameTooLong(club1.getName()));
+        txtNameClub2.setText(Utils.clubNameTooLong(club2.getName()));
         btnGoalA = view.findViewById(R.id.btnGoalA);
         btnGoalB = view.findViewById(R.id.btnGoalB);
         btnFauteA = view.findViewById(R.id.btnFauteA);
@@ -171,16 +181,28 @@ public class MatchFragment extends Fragment{
         horsJeuTxtA.setText("");
         horsJeuTxtB.setText("");
 
+        tirTxt = getActivity().getResources().getString(R.string.tir);
+        tirCadreTx = getActivity().getResources().getString(R.string.tirCadre);
 
+        databaseManager = new DatabaseManager(getContext());
         btnGoalA.setOnClickListener(view1 -> {
             scoreTeamA++;
+            tir++;
+            tirCadre++;
             txtScoreClub1.setText(""+scoreTeamA);
-            stats1.setTir(2);
+            tirsTxt.setText(tirTxt+"(s): "+tir);
+            tirCadreTxt.setText(tirCadreTx+"(s): " + tirCadre);
+            v.vibrate(400);
         });
 
         btnGoalB.setOnClickListener(view1 -> {
             scoreTeamB++;
+            tirB++;
+            tirCadreB++;
             txtScoreClub2.setText(""+scoreTeamB);
+            tirsTxtB.setText("Tir(s) : " + tirB);
+            tirCadreTxtB.setText("Tir(s) Cadré(s) : " + tirCadreB);
+            v.vibrate(400);
         });
 
         btnPasseA.setOnClickListener(view1 -> {
@@ -218,6 +240,7 @@ public class MatchFragment extends Fragment{
         );
 
         btnTirB.setOnClickListener(view13 -> showDialogTirs(view13,2));
+
         Picasso.with(getContext())
                 .load(club1.getImgUrl())
                 .fit()
@@ -229,60 +252,53 @@ public class MatchFragment extends Fragment{
                 .centerCrop()
                 .into(imgView_logo_club2);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String strDate = dateFormat.format(date).toString();
-        //match = new Match(club1, club2, strDate, "Stade de France");
+
+
+        fab_btn  = view.findViewById(R.id.fab_btn);
+        fab_btn.setOnClickListener(view15 -> {
+            stats1 = new Statistique( tir, tirCadre, scoreTeamA, fauteA, cartonJauneA, cartonRougeA, passeA, horsJeuA, 0);
+            stats2 = new Statistique(tirB, tirCadreB, scoreTeamB, fauteB, cartonJauneB, cartonRougeB, passeB, horsJeuB, 0 );
+            ClubStats clubStats1 = new ClubStats(club1.getName(), club1.getImgUrl(), club1.getImgUrl96(), stats1);
+            ClubStats clubStats2 = new ClubStats(club2.getName(), club2.getImgUrl(), club2.getImgUrl96(), stats2);
+            addressMatch = new Address(title,snippet,currentLat, currentLong);
+            match = new Match(serialId, clubStats1, clubStats2,strDate,addressMatch);
+            DatabaseReference matchRef = FirebaseDatabase.getInstance().getReference(Common.MATCH_REF);
+            matchRef.push().setValue(match);
+            databaseManager.updateStatsClub(club1.getName(), tir, tirCadre, scoreTeamA, passeA, horsJeuA, fauteA, cartonJauneA, cartonRougeA);
+            databaseManager.updateStatsClub(club2.getName(), tirB, tirCadreB, scoreTeamB, passeB, horsJeuB, fauteB, cartonJauneB, cartonRougeB);
+            showDialogDoneMatch();
+        });
+
         return view;
-    }
 
-    public Club getClub1() {
-        return club1;
-    }
-
-    public Match getMatch() {
-        return match;
-    }
-
-    public void setStats1(Statistique stats) {
-        this.stats1 = stats;
-    }
-
-
-    public void setTirA(int tir) {
-        this.tir = tir;
-    }
-
-    public int getTirA() {
-        return this.tir;
     }
 
     private void showDialogTirs(View view, int team) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle(getResources().getString(R.string.dialog_tir));
-        final String [] langs = {"Tir", "Tir cadré"};
+
+        final String [] langs = {tirTxt, tirCadreTx};
         builder.setSingleChoiceItems(langs, -1, (dialogInterface, i) -> {
             if(i == 0) {
                 if(team == 1) {
                     tir++;
-                    tirsTxt.setText("Tir(s) : "+tir);
-                    this.setTirA(tir);
+                    tirsTxt.setText(tirTxt+"(s): "+tir);
                 } else {
                     tirB++;
-                    tirsTxtB.setText("Tir(s) : " + tirB);
+                    tirsTxtB.setText(tirTxt+"(s): " + tirB);
                 }
             } else {
                 if(team == 1) {
                     tirCadre++;
                     tir++;
-                    tirsTxt.setText("Tir(s) : " + tir);
-                    tirCadreTxt.setText("Tir(s) Cadré(s) : " + tirCadre);
+                    tirsTxt.setText(tirTxt+"(s): "+tir);
+                    tirCadreTxt.setText(tirCadreTx+"(s): " + tirCadre);
                 } else {
                     tirCadreB++;
                     tirB++;
-                    tirsTxtB.setText("Tir(s) : " + tirB);
-                    tirCadreTxtB.setText("Tir(s) Cadré(s) : " + tirCadreB);
+                    tirsTxtB.setText(tirTxt+"(s): "+tirB);
+                    tirCadreTxtB.setText(tirCadreTx+"(s): " + tirCadreB);
                 }
             }
 
@@ -299,39 +315,42 @@ public class MatchFragment extends Fragment{
 
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle(getResources().getString(R.string.dialog_faute));
-        final String [] langs = {"Faute","Carton jaune", "Carton rouge", "Carton jaune + Penalty", "Carton rouge + Penalty"};
+        String faute = getActivity().getResources().getString(R.string.faute);
+        String cartonRouge = getActivity().getResources().getString(R.string.cartons_rouges);
+        String cartonJaune = getActivity().getResources().getString(R.string.cartons_jaunes);
+        final String [] langs = {faute,cartonJaune, cartonRouge};
         builder.setSingleChoiceItems(langs, -1, (dialogInterface, i) -> {
             if(i == 0) {
                 if(team == 1) {
                     fauteA++;
-                    fautesATxt.setText("Faute(s) : " + fauteA);
+                    fautesATxt.setText(faute+"(s): "+  fauteA);
                 } else {
                     fauteB++;
-                    fautesTxtB.setText("Faute(s) : " + fauteB);
+                    fautesTxtB.setText(faute+"(s): "+ fauteB);
                 }
             } else if(i == 1) {
                 if(team == 1) {
                     fauteA++;
                     cartonJauneA++;
-                    cartonJATxt.setText("Carton(s) jaune(s) : " + cartonJauneA);
-                    fautesATxt.setText("Faute(s) : " + fauteA);
+                    cartonJATxt.setText(cartonJaune+"(s): " + cartonJauneA);
+                    fautesATxt.setText(faute+"(s): "+  fauteA);
                 } else {
                     fauteB++;
                     cartonJauneB++;
-                    cartonJTxtB.setText("Carton(s) jaune(s) : " + cartonJauneB);
-                    fautesTxtB.setText("Faute(s) : " + fauteB);
+                    cartonJTxtB.setText(cartonJaune+"(s): " + cartonJauneB);
+                    fautesTxtB.setText(faute+"(s): "+ fauteB);
                 }
             } else if(i == 2) {
                 if(team == 1) {
                     fauteA++;
                     cartonRougeA++;
-                    cartonRATxt.setText("Carton(s) rouge(s) : " + cartonRougeA);
-                    fautesATxt.setText("Faute(s) : " + fauteA);
+                    cartonRATxt.setText(cartonRouge+"(s): "+ cartonRougeA);
+                    fautesATxt.setText(faute+"(s): "+  fauteA);
                 } else {
                     fauteB++;
                     cartonRougeB++;
-                    cartonRTxtB.setText("Carton(s) rouge(s) : " + cartonRougeB);
-                    fautesTxtB.setText("Faute(s) : " + fauteB);
+                    cartonRTxtB.setText(cartonRouge+"(s): "+  cartonRougeB);
+                    fautesTxtB.setText(faute+"(s): "+ fauteB);
                 }
             } else {
 
@@ -345,22 +364,24 @@ public class MatchFragment extends Fragment{
         dialog.setCancelable(false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
 
-    public String clubNameTooLong(String clubName) {
-        String outString = "";
-        if(clubName.trim().length() >= 10) {
-            for(int i = 0; i < clubName.length(); i++) {
-                char c = clubName.charAt(i);
-                outString += (Character.isUpperCase(c) ? c + " " : "").trim();
-            }
-        } else {
-            return clubName;
-        }
-        return outString;
+    private void showDialogDoneMatch() {
+        String messageCancelMatch = getResources().getString(R.string.dialog_cancel_match);
+        String btnYesString = getResources().getString(R.string.yes_txt_btn);
+        String btnNoString = getResources().getString(R.string.no_txt_btn);
+        new AlertDialog.Builder(getActivity())
+                .setMessage(getResources().getString(R.string.game_over))
+                .setPositiveButton(btnYesString, (dialogInterface, i) -> {
+                    getActivity().finish();
+                    Intent intent = new Intent(getActivity(), StatsMatchBottomBarActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("match", match);
+                    intent.putExtra("address", addressMatch);
+                    startActivity(intent);
+                })
+                .setNegativeButton(btnNoString, null)
+                .show();
+
     }
 
 }

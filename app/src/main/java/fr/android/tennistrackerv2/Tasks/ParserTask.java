@@ -1,18 +1,16 @@
 package fr.android.tennistrackerv2.Tasks;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -25,6 +23,7 @@ import java.util.List;
 
 import fr.android.tennistrackerv2.CreateMatchActivity;
 import fr.android.tennistrackerv2.Parser.JsonParser;
+import fr.android.tennistrackerv2.R;
 
 public class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, String>>> implements GoogleMap.OnMarkerClickListener {
     GoogleMap map;
@@ -38,6 +37,7 @@ public class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, 
         this.map = map;
         this.myLatLng = myLatLng;
         this.context = context;
+
     }
     @Override
     protected List<HashMap<String, String>> doInBackground(String... strings) {
@@ -66,23 +66,26 @@ public class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, 
             photo_ref = hashMap.get("photo_ref");
             LatLng latLng = new LatLng(lat, lng);
             MarkerOptions me = new MarkerOptions();
+
             stadiumMarkers = map.addMarker(new MarkerOptions()
             .title(name)
                     .snippet(vicinity)
             .position(latLng));
-            me.title("Me");
+            me.title(context.getResources().getString(R.string.marker_me));
             me.position(myLatLng);
+            me.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
             map.addMarker(me);
             map.setOnMarkerClickListener(this);
         }
     }
+
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
         final Handler handler  = new Handler();
 
         String infoAddress = marker.getTitle()+", "+marker.getSnippet();
-        if (!marker.getTitle().equals("Me")) {
+        if (!marker.getTitle().equals(context.getResources().getString(R.string.marker_me))) {
             final Runnable runnable = () -> showDialog(infoAddress, marker, photo_ref);
             handler.postDelayed(runnable, 900);
         } else {
@@ -93,8 +96,8 @@ public class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, 
 
     public void showDialog(String message, Marker marker, String photo_ref) {
         new AlertDialog.Builder(context)
-                .setMessage("Voulez-vous sélectionner ce stade ?")
-                .setPositiveButton("Oui", (dialogInterface, i) -> {
+                .setMessage(context.getResources().getString(R.string.pick_stadium))
+                .setPositiveButton(context.getResources().getString(R.string.yes_txt_btn), (dialogInterface, i) -> {
                     Intent intent = new Intent(context, CreateMatchActivity.class);
                     intent.putExtra("address", message);
                     intent.putExtra("title", marker.getTitle());
@@ -105,7 +108,7 @@ public class ParserTask extends AsyncTask<String, Integer, List<HashMap<String, 
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     context.startActivity(intent);
                 })
-                .setNegativeButton("Non", null)
+                .setNegativeButton(context.getResources().getString(R.string.no_txt_btn), null)
                 .show();
 
     }

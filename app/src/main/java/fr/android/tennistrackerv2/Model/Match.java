@@ -12,18 +12,22 @@ public class Match implements Serializable {
     private String addressMatch;
     private String serialId;
     private List<Upload> uploadList;
+    private Address address;
 
     public Match() {
     }
 
-    public Match(String serialId, ClubStats club1, ClubStats club2, String dateMatch, String addressMatch) {
+    public Match(String serialId, ClubStats club1, ClubStats club2, String dateMatch, Address addressMatch) {
         this.serialId = serialId;
         this.club1 = club1;
         this.club2 = club2;
         this.dateMatch = dateMatch;
-        this.addressMatch = addressMatch;
+        this.address = addressMatch;
     }
 
+    public Address getAddress() {
+        return address;
+    }
 
     public void setDateMatch(String dateMatch) {
         this.dateMatch = dateMatch;

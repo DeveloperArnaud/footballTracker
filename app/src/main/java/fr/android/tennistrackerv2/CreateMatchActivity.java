@@ -1,60 +1,25 @@
 package fr.android.tennistrackerv2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.ExecutionException;
-
 import fr.android.tennistrackerv2.Model.Club;
-import fr.android.tennistrackerv2.Model.Format;
-import fr.android.tennistrackerv2.Model.FormatLastMatch;
 import fr.android.tennistrackerv2.SpinnerAdapter.SpinnerAdapter;
 import fr.android.tennistrackerv2.ViewModel.ClubViewModel;
-import fr.android.tennistrackerv2.ViewModel.FormatLastMatchViewModel;
-import fr.android.tennistrackerv2.ViewModel.FormatViewModel;
 
 public class CreateMatchActivity extends AppCompatActivity {
-    private FormatViewModel formatViewModel;
-    private FormatLastMatchViewModel formatLastMatchViewModel;
     private ClubViewModel clubViewModel;
-    private ArrayAdapter<Format> adapterformatMatch;
-    private ArrayAdapter<FormatLastMatch> adapterformatLastMatch;
-    private ArrayAdapter<Club> clubArrayAdapter;
+
     Spinner spinnerClub1;
     Spinner spinnerClub2;
     Club club1;
@@ -68,8 +33,6 @@ public class CreateMatchActivity extends AppCompatActivity {
     String snippet;
     String photo_ref;
     double lat, lng;
-    String latP;
-    String lngtP;
 
 
     @Override
@@ -81,6 +44,8 @@ public class CreateMatchActivity extends AppCompatActivity {
         btnLocation = findViewById(R.id.btnLocation);
         lieuMatchTxt = findViewById(R.id.lieuMatchTxt);
         BtnStartMatch = findViewById(R.id.BtnStartMatch);
+
+        lieuMatchTxt.setEnabled(false);
 
         i = getIntent();
 
@@ -96,18 +61,15 @@ public class CreateMatchActivity extends AppCompatActivity {
             lieuMatchTxt.setText(address);
         }
 
+
         lat = i.getDoubleExtra("lat", 0);
         lng =i.getDoubleExtra("lng",0);
 
-
-        formatViewModel = new ViewModelProvider(this).get(FormatViewModel.class);
-        formatLastMatchViewModel = new ViewModelProvider(this).get(FormatLastMatchViewModel.class);
         clubViewModel = new ViewModelProvider(this).get(ClubViewModel.class);
 
         clubViewModel.getClubData().observe(this, clubs -> {
             SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this, R.layout.custom_spinner_club_adapter,clubs );
             spinnerAdapter.notifyDataSetChanged();
-            //spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerClub1.setAdapter(spinnerAdapter);
         });
 
@@ -115,25 +77,9 @@ public class CreateMatchActivity extends AppCompatActivity {
             System.out.println(clubs);
             SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this, R.layout.custom_spinner_club_adapter,clubs );
             spinnerAdapter.notifyDataSetChanged();
-            //spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerClub2.setAdapter(spinnerAdapter);
         });
 
-
-        formatViewModel.getFormatList().observe(this, formats -> {
-
-            adapterformatMatch = new ArrayAdapter<>(CreateMatchActivity.this, android.R.layout.simple_spinner_item, formats);
-            adapterformatMatch.notifyDataSetChanged();
-            adapterformatMatch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        });
-
-
-        formatLastMatchViewModel.getFormatLastMatchList().observe(this, formatLastMatches -> {
-
-            adapterformatLastMatch = new ArrayAdapter<>(CreateMatchActivity.this, android.R.layout.simple_spinner_item, formatLastMatches);
-            adapterformatLastMatch.notifyDataSetChanged();
-            adapterformatLastMatch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        });
         // Prevent to select two times same club
         spinnerClub1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -177,8 +123,18 @@ public class CreateMatchActivity extends AppCompatActivity {
             }
         });
 
+        if (i.getIntExtra("index1", 0) != 0 && i.getIntExtra("index2", 0) != 0) {
+            int index1 = i.getIntExtra("index1", 0);
+            int index2 = i.getIntExtra("index2", 0);
+
+            spinnerClub1.setSelection(index1);
+            spinnerClub2.setSelection(index2);
+        }
+
+
         BtnStartMatch.setOnClickListener(view -> goToMatch());
         btnLocation.setOnClickListener(view -> {
+
             Intent intent = new Intent(CreateMatchActivity.this, NearbyStadiumActivity.class);
             startActivity(intent);
         });
@@ -189,7 +145,7 @@ public class CreateMatchActivity extends AppCompatActivity {
 
     public void goToMatch() {
 
-        Intent newMatchForm = new Intent(this, TestActivity.class);
+        Intent newMatchForm = new Intent(this, MatchActivity.class);
 
         if(club1 != null && club2 != null && address != null && lat > 0 & lng > 0) {
             newMatchForm.putExtra("club1", club1);
@@ -203,7 +159,7 @@ public class CreateMatchActivity extends AppCompatActivity {
             startActivity(newMatchForm);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else {
-            Toast.makeText(CreateMatchActivity.this, "Veuillez sélectionner tous les champs nécessaires", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateMatchActivity.this, "Veuillez choisir un stade", Toast.LENGTH_SHORT).show();
         }
 
     }

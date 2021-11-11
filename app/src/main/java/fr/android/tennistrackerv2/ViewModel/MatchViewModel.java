@@ -1,7 +1,5 @@
 package fr.android.tennistrackerv2.ViewModel;
 
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -19,7 +17,6 @@ import java.util.List;
 
 import fr.android.tennistrackerv2.Callback.IMatchCallbackListener;
 import fr.android.tennistrackerv2.Model.Match;
-import fr.android.tennistrackerv2.Model.Statistique;
 
 public class MatchViewModel extends ViewModel implements IMatchCallbackListener{
 

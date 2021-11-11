@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.android.tennistrackerv2.Callback.IUploadCallbackListener;
-import fr.android.tennistrackerv2.Common;
+import fr.android.tennistrackerv2.Utils.Common;
 import fr.android.tennistrackerv2.Model.Upload;
 
 public class UploadViewModel extends ViewModel implements IUploadCallbackListener {
@@ -46,6 +46,7 @@ public class UploadViewModel extends ViewModel implements IUploadCallbackListene
                     Upload upload = dataSnapshot.getValue(Upload.class);
                     uploads.add(upload);
                 }
+
                 listener.onUploadLoadSuccess(uploads);
             }
 

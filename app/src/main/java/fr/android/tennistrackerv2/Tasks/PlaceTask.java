@@ -28,7 +28,6 @@ public class PlaceTask extends AsyncTask<String, Integer, String> {
     protected String doInBackground(String... strings) {
         String data = null;
         try {
-            System.out.println("STRINGS BACK"+ strings[0].toString());
             data = downloadUrl(strings[0]);
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,7 +37,6 @@ public class PlaceTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        System.out.println("PARSER" + map);
         new ParserTask(map, latLng, context).execute(s);
     }
 

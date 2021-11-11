@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/statsBoard"
+        android:title="Stats"
+        android:icon="@drawable/ic_baseline_table_chart_24"/>
+
+    <item
+        android:id="@+id/localisation_match_stats"
+        android:title="@string/localisation"
+        android:icon="@drawable/ic_baseline_location_on_24"/>
+
+    <item
+        android:id="@+id/picture_match_stats"
+        android:title="@string/photos"
+        android:icon="@drawable/ic_baseline_image_24"/>
+</menu>

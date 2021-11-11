@@ -14,11 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.android.tennistrackerv2.Callback.IClubCallbackListener;
-import fr.android.tennistrackerv2.Common;
+import fr.android.tennistrackerv2.Utils.Common;
 import fr.android.tennistrackerv2.Model.Club;
+
 
 public class ClubViewModel extends ViewModel implements IClubCallbackListener {
 
+    //MutableLiveData permet de modifier des données lorsqu'elles sont recupérées
     private MutableLiveData<List<Club>> clubData;
     private MutableLiveData<String> message;
     public IClubCallbackListener listener;
@@ -27,6 +29,7 @@ public class ClubViewModel extends ViewModel implements IClubCallbackListener {
     public ClubViewModel() {
         listener = this;
     }
+
 
     public MutableLiveData<List<Club>> getClubData() {
         if(clubData == null) {

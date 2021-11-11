@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/background_soccer"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <ImageView
+                    android:id="@+id/imgView_logo_club1"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp" />
+
+                <TextView
+                    android:id="@+id/txtNameClub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team A"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtScoreClub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/passeTxtA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passes : 6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tirsTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tirs : 6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tirsCadresTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tirs cadrés : 6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/fautesATxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fautes : 6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/cartonJATxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cartons jaunes : 6"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/cartonRATxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cartons rouges : 6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/horsJeuTxtA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hors-jeu : 6"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnTirA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/tir"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnPasseA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/passe"
+                    android:background="@drawable/rounded_corners"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnGoalA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/but"
+                    android:background="@drawable/rounded_corners"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnFauteA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/faute"
+                    android:background="@drawable/rounded_corners"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnHorsJeuA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/hors_jeu"
+                    android:textSize="12sp" />
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <ImageView
+                    android:id="@+id/imgView_logo_club2"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp" />
+
+                <TextView
+                    android:id="@+id/txtNameClub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team B"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtScoreClub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/passeTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passes : 6"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tirsTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tirs : 6"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tirsCadresTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tirs cadrés : 6"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/fautesTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fautes : 6"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/cartonJTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cartons jaunes : 6"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/cartonRTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cartons rouges : 6"
+                    android:textSize="12dp" />
+
+
+                <TextView
+                    android:id="@+id/horsJeuTxtB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hors-jeu : 6"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnTirB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/tir"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnPasseB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/passe"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/btnGoalB"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/but"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btnFauteB"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/faute"
+                    android:textSize="13dp" />
+
+                <Button
+                    android:id="@+id/btnHorsJeuB"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="@string/hors_jeu"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab_btn"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        app:fabSize="normal"
+        app:elevation="6dp"
+        android:background="@color/black"
+        android:src="@drawable/ic_baseline_done_all_24"/>
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

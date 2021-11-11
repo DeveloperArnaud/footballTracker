@@ -24,12 +24,7 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        Intent i = getIntent();
-        serialId = i.getStringExtra("serialId");
-        if(serialId == null) {
-            serialId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-        }
-        System.out.println(serialId);
+        serialId  = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         recyclerView = findViewById(R.id.recycler_view_history);
         matchViewModel = new ViewModelProvider(this).get(MatchViewModel.class);
         matchViewModel.getMatches(serialId).observe(this, matches -> {
@@ -46,8 +41,10 @@ public class HistoryActivity extends AppCompatActivity {
         Intent i = new Intent(this, HomeActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         super.onBackPressed();
     }
+
 
     @Override
     public void finish() {

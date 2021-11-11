@@ -28,6 +28,33 @@
     <string name="txtUploadFailed">Upload failed</string>
     <string name="txtDownloadImg">Do you want to download this image?</string>
     <string name="txtImageSaved">Image Saved</string>
+    <string name="localisez_les_stades_pr_s_de_chez_vous">Find stadiums near you</string>
+    <string name="localisation">Location</string>
+    <string name="photos">Pictures</string>
+    <string name="tir">Shot</string>
+    <string name="passe">Pass</string>
+    <string name="but">Goal</string>
+    <string name="faute">Foul</string>
+    <string name="hors_jeu">Offside</string>
+    <string name="cartons_jaunes">Yellow Card</string>
+    <string name="cartons_rouges">Red Card</string>
+    <string name="tirCadre">Shot on target</string>
+    <string name="pick_stadium">Do you want to pick this stadium ?</string>
+    <string name="marker_me">Me</string>
+    <string name="game_over">Game Over</string>
+    <string name="near_you">Near you</string>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

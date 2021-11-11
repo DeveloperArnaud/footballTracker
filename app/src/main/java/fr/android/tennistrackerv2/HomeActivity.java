@@ -4,15 +4,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.Locale;
 
-import fr.android.tennistrackerv2.Callback.ISendDataFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -20,22 +23,28 @@ public class HomeActivity extends AppCompatActivity {
     Button btnLang;
     Button btnHistoric;
     Button btnNewMatch;
-
+    Button btnStatsClubs;
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
+
+
         setContentView(R.layout.activity_home);
 
-        loadLocale();
-        setContentView(R.layout.activity_home);
 
         btnLang = (Button) findViewById(R.id.btnLang);
         btnHistoric = (Button) findViewById(R.id.btnHistoric);
         btnNewMatch = (Button) findViewById(R.id.btnNewMatch);
+        btnStatsClubs = (Button) findViewById(R.id.btnStatsClubs);
 
         btnLang.setOnClickListener(view -> showChangeLangDialog());
         btnHistoric.setOnClickListener(view -> goToHistoric());
         btnNewMatch.setOnClickListener(view -> goToNewMatchForm());
+        btnStatsClubs.setOnClickListener(view -> {
+            goToClubStatistiques();
+        });
     }
 
     public void goToHistoric() {
@@ -50,6 +59,12 @@ public class HomeActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    public void goToClubStatistiques() {
+        Intent clubStatistiquesIntent = new Intent(this, ClubStatistiquesActivity.class);
+        startActivity(clubStatistiquesIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
     private void showChangeLangDialog() {
         String frLang = getResources().getString(R.string.frLang);
         String enLang = getResources().getString(R.string.enLang);
@@ -60,8 +75,9 @@ public class HomeActivity extends AppCompatActivity {
             if(i == 0) {
                 setLocale("fr");
                 recreate();
-            } else {
+            } else if(i == 1) {
                 setLocale("en");
+                //
                 recreate();
             }
             dialogInterface.dismiss();
@@ -76,6 +92,7 @@ public class HomeActivity extends AppCompatActivity {
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.locale = locale;
+
         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
@@ -83,14 +100,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void loadLocale() {
-        SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        preferences = getSharedPreferences("Settings", MODE_PRIVATE);
         String lang = preferences.getString("My_Lang", "");
-        setLocale(lang);
+
+
+        if(!Locale.getDefault().getLanguage().equals(lang)) {
+            setLocale(Locale.getDefault().getLanguage());
+        } else {
+            setLocale(lang);
+        }
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-    }
 }

@@ -1,99 +1,105 @@
 package fr.android.tennistrackerv2;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import fr.android.tennistrackerv2.Fragment.LocationFragment;
+import fr.android.tennistrackerv2.Fragment.MatchFragment;
+import fr.android.tennistrackerv2.Fragment.PictureFragment;
+import fr.android.tennistrackerv2.Model.Club;
 
 public class MatchActivity extends AppCompatActivity {
+    double lat, lng;
+    Bundle bundle;
+    Bundle bundleClub;
+    String address;
+    String title;
+    String snippet;
+    String photo_ref;
+    Club club1;
+    Club club2;
+    final Fragment fragment1 = new MatchFragment();
+    final Fragment fragment2 = new LocationFragment();
+    final Fragment fragment3 = new PictureFragment();
+    Fragment active = fragment1;
 
 
-        ImageView imgView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_match);
-        showDialogPlayers();
-        imgView = findViewById(R.id.imgView);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Match");
-    }
+        setContentView(R.layout.activity_test);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
+        Intent i = getIntent();
+        address = i.getStringExtra("address");
+        lat = i.getDoubleExtra("lat", 0);
+        lng = i.getDoubleExtra("lng", 0);
+        title = i.getStringExtra("title");
+        snippet = i.getStringExtra("snippet");
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_picture) {// User chose the "Settings" item, show the app settings UI...
-            if(ContextCompat.checkSelfPermission(MatchActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-;
-                ActivityCompat.requestPermissions(this, new String[] {
-                        Manifest.permission.CAMERA
-                }, 100);
-            }
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, 100);
+        club1 = (Club) i.getSerializableExtra("club1");
+        club2 = (Club) i.getSerializableExtra("club2");
 
+        bundle = new Bundle();
+        bundleClub = new Bundle();
 
-            return true;
-        }// If we got here, the user's action was not recognized.
-        // Invoke the superclass to handle it.
-        return super.onOptionsItemSelected(item);
-    }
+        bundle.putDouble("lat", lat);
+        bundle.putDouble("lng", lng);
+        bundle.putString("title", title);
+        bundle.putString("snippet", snippet);
+        bundle.putString("photo_ref", photo_ref);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-            if(requestCode == 100 && data != null) {
-                Bundle bundle = data.getExtras();
-                Bitmap photo = (Bitmap) bundle.get("data");
-                imgView.setImageBitmap(photo);
-            }
+        bundleClub.putSerializable("club1", club1);
+        bundleClub.putSerializable("club2", club2);
+        bundleClub.putString("address", address);
+        bundleClub.putString("title", title);
+        bundleClub.putString("snippet", snippet);
+
+        bundleClub.putDouble("lat", lat);
+        bundleClub.putDouble("lng", lng);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        fragment1.setArguments(bundleClub);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment1, "1").commit();
+        fragment2.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment2, "2").hide(fragment2).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment3, "3").hide(fragment3).commit();
 
     }
+    // Gestion des fragments
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    //Fragment selectedFragment = null;
 
-    private void showDialogPlayers() {
-
-        String play1String = getResources().getString(R.string.player_1_editTxt);
-        String play2String = getResources().getString(R.string.player_2_editTxt);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getResources().getString(R.string.dialog_serve_player));
-        final String [] langs = {play1String, play2String};
-        builder.setSingleChoiceItems(langs, -1, (dialogInterface, i) -> {
-            if(i == 0) {
-
-            } else {
-
-            }
-            dialogInterface.dismiss();
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setCancelable(false);
-
-    }
+                    switch (item.getItemId()) {
+                        case R.id.matchBoard:
+                            fragment1.setArguments(bundleClub);
+                            getSupportFragmentManager().beginTransaction().hide(active).show(fragment1).commit();
+                            active = fragment1;
+                            break;
+                        case R.id.localisationPage:
+                            fragment2.setArguments(bundle);
+                            getSupportFragmentManager().beginTransaction().hide(active).show(fragment2).commit();
+                            active = fragment2;
+                            break;
+                        case R.id.picturePage:
+                            getSupportFragmentManager().beginTransaction().hide(active).show(fragment3).commit();
+                            active = fragment3;
+                            break;
+                    }
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment, "selected_fragment").commit();
+                    return true;
+                }
+            };
 
 
     private void showDialogCancelMatch() {
@@ -102,7 +108,13 @@ public class MatchActivity extends AppCompatActivity {
         String btnNoString = getResources().getString(R.string.no_txt_btn);
         new AlertDialog.Builder(this)
                 .setMessage(messageCancelMatch)
-                .setPositiveButton(btnYesString, (dialogInterface, i) -> finish())
+                .setPositiveButton(btnYesString, (dialogInterface, i) -> {
+                    finish();
+                    Intent intent = new Intent(this, CreateMatchActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
+                })
                 .setNegativeButton(btnNoString, null)
                 .show();
 
@@ -117,5 +129,11 @@ public class MatchActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
