@@ -159,7 +159,7 @@ public class CreateMatchActivity extends AppCompatActivity {
             startActivity(newMatchForm);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else {
-            Toast.makeText(CreateMatchActivity.this, "Veuillez choisir un stade", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateMatchActivity.this, getResources().getString(R.string.please_pick_stadium), Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -56,7 +56,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     public DatabaseManager(Context context){
-        super(context, DATABASE_NAME,null, 3);
+        super(context, DATABASE_NAME,null, 5);
     }
 
 

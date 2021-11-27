@@ -84,8 +84,25 @@ public class StatsMatchBottomBarActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, HistoryActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
+        // Nombre d'entrées si > 0 alors un fragment est instancié.
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if(count >= 0) {
+            if (count == 0) {
+                super.onBackPressed();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            } else {
+                //Appliquer la transition sur le dernier fragment pour eviter de clear l'activity
+                getSupportFragmentManager().popBackStack();
+            }
+        } else {
+            //Si aucun fragment, on clear l'activity
+            Intent i = new Intent(this, HistoryActivity.class);
+            // L'activité en cours de lancement(HomeActivity) est déjà en cours d'exécution dans la tâche actuelle,
+            // au lieu de lancer une nouvelle instance de cette activité, toutes les autres activités situées au-dessus seront fermées et
+            // cet intent sera transmise à l'ancienne activité (maintenant au-dessus) comme une nouvelle intention.
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+
     }
 }

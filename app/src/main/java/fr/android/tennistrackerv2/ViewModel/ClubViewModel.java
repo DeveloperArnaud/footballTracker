@@ -18,6 +18,10 @@ import fr.android.tennistrackerv2.Utils.Common;
 import fr.android.tennistrackerv2.Model.Club;
 
 
+/**
+ * Classe ClubViewModel
+ */
+
 public class ClubViewModel extends ViewModel implements IClubCallbackListener {
 
     //MutableLiveData permet de modifier des données lorsqu'elles sont recupérées
@@ -25,7 +29,9 @@ public class ClubViewModel extends ViewModel implements IClubCallbackListener {
     private MutableLiveData<String> message;
     public IClubCallbackListener listener;
 
-
+    /**
+     * Constructor
+     */
     public ClubViewModel() {
         listener = this;
     }

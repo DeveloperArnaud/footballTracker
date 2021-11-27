@@ -32,19 +32,10 @@ public class HistoryActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             matchAdapter = new MatchAdapter(this, matches);
             recyclerView.setAdapter(matchAdapter);
+            //Détecter les modifications
             matchAdapter.notifyDataSetChanged();
         });
     }
-
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(this, HomeActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        super.onBackPressed();
-    }
-
 
     @Override
     public void finish() {

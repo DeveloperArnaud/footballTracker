@@ -42,6 +42,7 @@
     <string name="cartons_rouges">Cartons rouges</string>
     <string name="tirCadre">Tir Cadré</string>
     <string name="pick_stadium">Voulez-vous sélectionner ce stade ?</string>
+    <string name="please_pick_stadium">Veuillez choisir un stade</string>
     <string name="marker_me">Moi</string>
     <string name="game_over">Match terminé</string>
     <string name="near_you">Autour de vous</string>

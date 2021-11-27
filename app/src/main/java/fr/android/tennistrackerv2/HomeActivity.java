@@ -2,6 +2,8 @@ package fr.android.tennistrackerv2;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Charger la locale avant de charger le contenu
         loadLocale();
 
 
@@ -45,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         btnStatsClubs.setOnClickListener(view -> {
             goToClubStatistiques();
         });
+
+        Manager
     }
 
     public void goToHistoric() {
@@ -91,19 +96,27 @@ public class HomeActivity extends AppCompatActivity {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
+        //Modifier la configuration du locale du système avec notre configuration
         configuration.locale = locale;
 
+        //getDisplayMetrics : récuperer toutes les informations générales sur un ecran
+        // Dans ce cas-ci, nous modifions uniquement la configuration locale du téléphone
+        //Pour qu'il puisse appliquer la langue correspondante au locale appliquée
         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+        //Conserver les valeurs de préférences dans les settings
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        //Conserver la langue locale appliquée par l'utilisateur
         editor.putString("My_Lang", lang);
         editor.apply();
     }
 
     public void loadLocale() {
+        //Récupération de la langue appliquée dernièrement pas l'utilisateur
         preferences = getSharedPreferences("Settings", MODE_PRIVATE);
         String lang = preferences.getString("My_Lang", "");
 
-
+        //à chaque fois que nous quittons l'application
+        //Nous remettons la langue du système comme langue par défaut
         if(!Locale.getDefault().getLanguage().equals(lang)) {
             setLocale(Locale.getDefault().getLanguage());
         } else {

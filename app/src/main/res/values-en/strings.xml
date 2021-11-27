@@ -43,6 +43,7 @@
     <string name="marker_me">Me</string>
     <string name="game_over">Game Over</string>
     <string name="near_you">Near you</string>
+    <string name="please_pick_stadium">You must pick a stadium</string>
 
 
 

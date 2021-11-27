@@ -113,7 +113,6 @@ public class MatchActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, CreateMatchActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-
                 })
                 .setNegativeButton(btnNoString, null)
                 .show();
@@ -133,7 +132,6 @@ public class MatchActivity extends AppCompatActivity {
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-
         super.onRestoreInstanceState(savedInstanceState);
     }
 }

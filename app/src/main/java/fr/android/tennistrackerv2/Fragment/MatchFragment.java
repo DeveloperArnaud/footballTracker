@@ -117,6 +117,8 @@ public class MatchFragment extends Fragment {
     private final String strDate = dateFormat.format(date);
     String tirTxt;
     String tirCadreTx;
+    String horsJeuTxt;
+    String passTxt;
 
     @Nullable
     @Override
@@ -183,6 +185,8 @@ public class MatchFragment extends Fragment {
 
         tirTxt = getActivity().getResources().getString(R.string.tir);
         tirCadreTx = getActivity().getResources().getString(R.string.tirCadre);
+        horsJeuTxt = getActivity().getResources().getString(R.string.hors_jeu);
+        passTxt = getActivity().getResources().getString(R.string.passe);
 
         databaseManager = new DatabaseManager(getContext());
         btnGoalA.setOnClickListener(view1 -> {
@@ -200,29 +204,29 @@ public class MatchFragment extends Fragment {
             tirB++;
             tirCadreB++;
             txtScoreClub2.setText(""+scoreTeamB);
-            tirsTxtB.setText("Tir(s) : " + tirB);
-            tirCadreTxtB.setText("Tir(s) Cadré(s) : " + tirCadreB);
+            tirsTxtB.setText(tirTxt+"(s): "+tirB);
+            tirCadreTxtB.setText(tirCadreTx+"(s): " + tirCadreB);
             v.vibrate(400);
         });
 
         btnPasseA.setOnClickListener(view1 -> {
             passeA++;
-            passeTxtA.setText("Passe(s) : "+passeA);
+            passeTxtA.setText(passTxt+":" +passeA);
         });
 
         btnPasseB.setOnClickListener(view1 -> {
             passeB++;
-            passeTxtB.setText("Passe(s) : "+passeB);
+            passeTxtB.setText(passTxt+":" +passeB);
         });
 
         btnHorsJeuA.setOnClickListener(view1 -> {
             horsJeuA++;
-            horsJeuTxtA.setText("Hors-jeu : "+horsJeuA);
+            horsJeuTxtA.setText(horsJeuTxt+"(s): " +horsJeuA);
         });
 
         btnHorsJeuB.setOnClickListener(view1 -> {
             horsJeuB++;
-            horsJeuTxtB.setText("Hors-jeu : "+horsJeuB);
+            horsJeuTxtB.setText(horsJeuTxt+"(s): " +horsJeuB);
         });
 
         btnFauteA.setOnClickListener(view12 -> {
@@ -255,17 +259,8 @@ public class MatchFragment extends Fragment {
 
 
         fab_btn  = view.findViewById(R.id.fab_btn);
+
         fab_btn.setOnClickListener(view15 -> {
-            stats1 = new Statistique( tir, tirCadre, scoreTeamA, fauteA, cartonJauneA, cartonRougeA, passeA, horsJeuA, 0);
-            stats2 = new Statistique(tirB, tirCadreB, scoreTeamB, fauteB, cartonJauneB, cartonRougeB, passeB, horsJeuB, 0 );
-            ClubStats clubStats1 = new ClubStats(club1.getName(), club1.getImgUrl(), club1.getImgUrl96(), stats1);
-            ClubStats clubStats2 = new ClubStats(club2.getName(), club2.getImgUrl(), club2.getImgUrl96(), stats2);
-            addressMatch = new Address(title,snippet,currentLat, currentLong);
-            match = new Match(serialId, clubStats1, clubStats2,strDate,addressMatch);
-            DatabaseReference matchRef = FirebaseDatabase.getInstance().getReference(Common.MATCH_REF);
-            matchRef.push().setValue(match);
-            databaseManager.updateStatsClub(club1.getName(), tir, tirCadre, scoreTeamA, passeA, horsJeuA, fauteA, cartonJauneA, cartonRougeA);
-            databaseManager.updateStatsClub(club2.getName(), tirB, tirCadreB, scoreTeamB, passeB, horsJeuB, fauteB, cartonJauneB, cartonRougeB);
             showDialogDoneMatch();
         });
 
@@ -372,6 +367,16 @@ public class MatchFragment extends Fragment {
         new AlertDialog.Builder(getActivity())
                 .setMessage(getResources().getString(R.string.game_over))
                 .setPositiveButton(btnYesString, (dialogInterface, i) -> {
+                    stats1 = new Statistique( tir, tirCadre, scoreTeamA, fauteA, cartonJauneA, cartonRougeA, passeA, horsJeuA, 0);
+                    stats2 = new Statistique(tirB, tirCadreB, scoreTeamB, fauteB, cartonJauneB, cartonRougeB, passeB, horsJeuB, 0 );
+                    ClubStats clubStats1 = new ClubStats(club1.getName(), club1.getImgUrl(), club1.getImgUrl96(), stats1);
+                    ClubStats clubStats2 = new ClubStats(club2.getName(), club2.getImgUrl(), club2.getImgUrl96(), stats2);
+                    addressMatch = new Address(title,snippet,currentLat, currentLong);
+                    match = new Match(serialId, clubStats1, clubStats2,strDate,addressMatch);
+                    DatabaseReference matchRef = FirebaseDatabase.getInstance().getReference(Common.MATCH_REF);
+                    matchRef.push().setValue(match);
+                    databaseManager.updateStatsClub(club1.getName(), tir, tirCadre, scoreTeamA, passeA, horsJeuA, fauteA, cartonJauneA, cartonRougeA);
+                    databaseManager.updateStatsClub(club2.getName(), tirB, tirCadreB, scoreTeamB, passeB, horsJeuB, fauteB, cartonJauneB, cartonRougeB);
                     getActivity().finish();
                     Intent intent = new Intent(getActivity(), StatsMatchBottomBarActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

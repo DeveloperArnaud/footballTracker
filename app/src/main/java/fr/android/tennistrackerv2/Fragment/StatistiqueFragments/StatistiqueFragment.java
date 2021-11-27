@@ -123,6 +123,6 @@ public class StatistiqueFragment extends Fragment {
         return view;
     }
 
-
+    
 
 }
